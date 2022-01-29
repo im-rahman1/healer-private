@@ -1,0 +1,104 @@
+.footer {
+  background: #01a22e;
+  color: #ffff;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playstoreBtn {
+  width: 120px;
+  position: relative;
+  top: -35px;
+}
+
+.SocialMedia__links {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.SocialMedia__links > a {
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+.SocialMedia__links > a:hover {
+  opacity: 1;
+}
+
+.footerElement1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footerElement1Links {
+  opacity: 0.8;
+  text-align: left;
+}
+
+.footerElement1Links > ul {
+  list-style: none;
+}
+
+.followUs {
+  /* padding-right: 20px; */
+  text-align: center;
+}
+
+.footerElement2 {
+  position: relative;
+  bottom: 10px;
+  text-align: center;
+  /* padding-left: 10px; */
+}
+
+.footerHeading {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 540px) {
+  .footer {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .footerElement1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 20px;
+  }
+
+  .footerElement2 {
+    padding-left: 0;
+  }
+
+  .footerDownloadApp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .followUs {
+    padding-right: 0px;
+    text-align: center;
+    position: relative;
+    bottom: 40px;
+  }
+
+  .footerElement1Links {
+    opacity: 0.8;
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  .footerElement1Links > ul {
+    text-align: center;
+  }
+}
