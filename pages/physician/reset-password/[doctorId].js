@@ -78,7 +78,10 @@ export default function ResetPassword() {
   };
 
   return (
-    <Layout title="Reset Password" name="robots" content="noindex, nofollow">
+    <Layout
+      title="Reset Password"
+      description="robots"
+      keywords="noindex, nofollow">
       <div className={styles.newPasswordForm}>
         <Typography className={styles.formHeading} variant="h5">
           Enter your new password!
