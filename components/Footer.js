@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.footerElement2}>
-        <Typography variant="h4">Healer</Typography>
+        <Image src="/healer_web_white.png" alt="Logo" width={140} height={40} />
         <Typography variant="body2" className={styles.footerHeading}>
           2022 Healer.pk All rights reserved
         </Typography>
