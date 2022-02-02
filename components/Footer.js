@@ -16,7 +16,11 @@ export default function Footer() {
         <div className={styles.footerDownloadApp}>
           <Typography variant="subtitle1">Download Our App</Typography>
           <div className={styles.playstoreBtn}>
-            <Image src={playstore} alt="get it on playstore" />
+            <Link href="https://play.google.com/store/apps/details?id=com.healer.nature">
+              <a>
+                <Image src={playstore} alt="get it on playstore" />
+              </a>
+            </Link>
           </div>
         </div>
         <div className={styles.followUs}>
@@ -60,7 +64,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.footerElement2}>
-        <Image src="/healer_web_white.png" alt="Logo" width={140} height={40} />
+        <Image src="/healer_web_white.png" alt="Logo" width={145} height={40} />
         <Typography variant="body2" className={styles.footerHeading}>
           2022 Healer.pk All rights reserved
         </Typography>

@@ -25,5 +25,5 @@ export default function Layout({ title, keywords, description, children }) {
 Layout.defaultProps = {
   title: "Healer",
   description: "Get online prescription",
-  keywords: "doctors, consultation, medicine, drugs",
+  keywords: "physician, consultation, medicine, drugs",
 };

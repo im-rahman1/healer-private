@@ -20,9 +20,9 @@ export default function Header() {
         <ul>
           <li>
             <ThemeProvider theme={theme}>
-              <Link className={styles.btn} href="/health-blog">
+              <Link className={styles.btn} href="https://healer.pk/health-feed">
                 <a>
-                  <Button size="small">Health Blog</Button>
+                  <Button size="small">Health Feed</Button>
                 </a>
               </Link>
             </ThemeProvider>
