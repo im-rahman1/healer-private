@@ -33,7 +33,7 @@ export default function Header() {
                 size="small"
                 className={styles.btnContained}
                 color="primary"
-                variant="contained">
+                variant="outlined">
                 Download App
               </Button>
             </ThemeProvider>

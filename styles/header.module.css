@@ -5,7 +5,7 @@
   align-items: center;
   padding: 0 5px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  height: 49px;
+  height: 46px;
   color: #01a22e;
   position: fixed;
   width: 100%;
@@ -34,23 +34,13 @@
 
 .btn {
   padding: 5px;
-  font-size: 6px;
-}
-
-.btnContained {
-  padding: 5px;
   font-size: 10px;
 }
 
 @media screen and (min-width: 480px) {
   .btn {
-    padding: 5px;
-    /* font-size: 13px; */
-  }
-
-  .btnContained {
     padding: 5px 10px;
-    /* font-size: 15px; */
+    font-size: 12px;
   }
 
   .header {

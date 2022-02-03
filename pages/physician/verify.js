@@ -1,9 +1,19 @@
 import Layout from "../../components/Layout";
+import styles from "../../styles/verify.module.css";
+
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Typography } from "@mui/material";
 
 export default function Verify() {
   return (
     <Layout title="Password Confirmed">
-      <h1>Password Confirmed</h1>
+      <div className={styles.verified}>
+        <CheckCircleIcon className={styles.confirmedIcon} />
+        <Typography variant="subtitle1">
+          Your Email has been Confirmed
+        </Typography>
+        <Typography variant="subtitle1">Now You can Login </Typography>
+      </div>
     </Layout>
   );
 }
