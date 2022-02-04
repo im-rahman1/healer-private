@@ -30,8 +30,8 @@ export default function Header() {
           <li>
             <ThemeProvider theme={theme}>
               <Button
-                size="small"
-                className={styles.btnContained}
+                size="medium"
+                className={styles.btn}
                 color="primary"
                 variant="outlined">
                 Download App

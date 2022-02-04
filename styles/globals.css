@@ -14,3 +14,16 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.swiper-pagination {
+  opacity: 1;
+}
+
+.swiper-pagination-bullet {
+  border: 2px solid #01a22c;
+  box-sizing: content-box;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #01a22c !important;
+}
