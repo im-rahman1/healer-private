@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
+
+import useWindowSize from "./hook/useWindowSize";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -11,6 +14,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 
 export default function Home() {
+  const windowSize = useWindowSize();
+
+  console.log(windowSize);
+
   return (
     <Layout>
       <Swiper
