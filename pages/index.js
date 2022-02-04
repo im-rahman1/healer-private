@@ -15,8 +15,19 @@ import { Pagination, Autoplay } from "swiper";
 
 export default function Home() {
   const windowSize = useWindowSize();
+  const [mobile, setMobile] = useState(false);
 
-  console.log(windowSize);
+  useEffect(() => {
+    // console.log(windowSize.width);
+
+    if (windowSize.width <= 540) {
+      setMobile(true);
+    } else if (windowSize.width > 540) {
+      setMobile(false);
+    }
+
+    // console.log(mobile);
+  }, [windowSize]);
 
   return (
     <Layout>
@@ -32,12 +43,13 @@ export default function Home() {
         className="mySwiper">
         <SwiperSlide>
           <Image
+            priority
             src="/homeImg1.jpg"
             className={styles.carousel_img}
             alt="homeImg1"
             layout="responsive"
-            width={400}
-            height={100}
+            width={10}
+            height={mobile ? 5 : 3}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -46,8 +58,8 @@ export default function Home() {
             className={styles.carousel_img}
             alt="homeImg1"
             layout="responsive"
-            width={400}
-            height={100}
+            width={10}
+            height={mobile ? 5 : 3}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -56,8 +68,8 @@ export default function Home() {
             className={styles.carousel_img}
             alt="homeImg1"
             layout="responsive"
-            width={400}
-            height={100}
+            width={10}
+            height={mobile ? 5 : 3}
           />
         </SwiperSlide>
       </Swiper>
