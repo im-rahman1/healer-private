@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
 
-import useWindowSize from "./hook/useWindowSize";
+// import useWindowSize from "./hook/useWindowSize";
 
 import "swiper/css";
 import "swiper/css/pagination";
