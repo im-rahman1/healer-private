@@ -66,12 +66,12 @@ export default function ResetPassword() {
         })
         .then((res) => {
           if (res.data === true) {
-            router.push("/reset-password/verify");
+            router.push("/physician/verify");
           }
         })
         .catch((error) => {
           if (error) {
-            router.push("/reset-password/went-wrong");
+            router.push("/physician/went-wrong");
           }
         });
     }
