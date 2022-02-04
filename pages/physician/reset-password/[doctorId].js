@@ -22,7 +22,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export default function ResetPassword() {
   const router = useRouter();
-  const doctorId = router.query.slug;
+  const doctorId = router.query.doctorId;
 
   const [values, setValues] = useState({
     password1: "",
@@ -56,10 +56,11 @@ export default function ResetPassword() {
     }
   };
 
+  // ${API_URL}/doctor/changePassword
   const handleFormSubmit = async () => {
     if (validate()) {
       setDisable(true);
-      const res = await axios
+      const response = await axios
         .post(`${API_URL}/doctor/changePassword`, {
           id: doctorId,
           password: password1.value,
@@ -68,11 +69,13 @@ export default function ResetPassword() {
           if (res.data === true) {
             router.push("/physician/verify");
           }
+          // console.log(res.data);
         })
         .catch((error) => {
           if (error) {
             router.push("/physician/went-wrong");
           }
+          // console.log("error");
         });
     }
   };
