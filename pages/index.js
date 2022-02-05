@@ -18,7 +18,6 @@ export default function Home() {
         }}
         autoplay={{
           delay: 3000,
-          disableOnInteraction: false,
         }}
         loop={true}
         modules={[Pagination, Autoplay]}
