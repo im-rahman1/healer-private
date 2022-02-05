@@ -19,7 +19,6 @@ export default function Home() {
         autoplay={{
           delay: 3000,
         }}
-        loop={true}
         modules={[Pagination, Autoplay]}
         className="mySwiper">
         <SwiperSlide>
