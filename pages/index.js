@@ -13,12 +13,11 @@ export default function Home() {
   return (
     <Layout>
       <Swiper
-        spaceBetween={30}
         pagination={{
           clickable: true,
         }}
         autoplay={{
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         loop={true}
