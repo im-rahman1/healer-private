@@ -18,7 +18,7 @@ export default function Footer() {
             <Link href="https://play.google.com/store/apps/details?id=com.healer.nature">
               <a>
                 <Image
-                  src="/playstoreBtn.png"
+                  src="/playstore.png"
                   alt="get it on playstore"
                   width={140}
                   height={50}
