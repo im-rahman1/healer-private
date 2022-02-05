@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import playstore from "../public/playstoreBtn.png";
+import playstoreBtn from "../public/playstoreBtn.png";
 import styles from "../styles/footer.module.css";
 import { Typography } from "@mui/material";
 
@@ -20,7 +20,7 @@ export default function Footer() {
               <a>
                 <Image
                   className={styles.playstoreBtnImg}
-                  src={playstore}
+                  src={playstoreBtn}
                   alt="get it on playstore"
                 />
               </a>

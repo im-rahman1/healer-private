@@ -30,10 +30,10 @@ export default function VerifyDoctor() {
 
   React.useEffect(() => {
     verify();
-  }, [id]);
+  });
 
   return (
-    <Layout title="Verify">
+    <Layout title="Verify" description="robots" keywords="noindex, nofollow">
       <div className={styles.verifyPage}>
         {loading ? (
           <div className={styles.loading}></div>
