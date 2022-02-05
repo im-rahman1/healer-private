@@ -8,11 +8,6 @@
   align-items: center;
 }
 
-.playstoreBtn {
-  width: 140px;
-  margin-top: 5px;
-}
-
 .SocialMedia__links {
   display: flex;
   gap: 0.4rem;

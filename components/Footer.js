@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import playstoreBtn from "../public/playstoreBtn.png";
 import styles from "../styles/footer.module.css";
 import { Typography } from "@mui/material";
 
@@ -19,9 +18,10 @@ export default function Footer() {
             <Link href="https://play.google.com/store/apps/details?id=com.healer.nature">
               <a>
                 <Image
-                  className={styles.playstoreBtnImg}
-                  src={playstoreBtn}
+                  src="/playstoreBtn.png"
                   alt="get it on playstore"
+                  width={140}
+                  height={50}
                 />
               </a>
             </Link>
