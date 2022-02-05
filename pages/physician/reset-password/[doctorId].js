@@ -56,7 +56,7 @@ export default function ResetPassword() {
     }
   };
 
-  // ${API_URL}/doctor/changePassword
+  // http://localhost:3000/physician/reset-password/1314461c1046104340111714171d41114414111c1315131c
   const handleFormSubmit = async () => {
     if (validate()) {
       setDisable(true);
@@ -67,13 +67,13 @@ export default function ResetPassword() {
         })
         .then((res) => {
           if (res.data === true) {
-            router.push("/physician/verify");
+            router.replace("/physician/verify");
           }
           // console.log(res.data);
         })
         .catch((error) => {
           if (error) {
-            router.push("/physician/went-wrong");
+            router.replace("/physician/went-wrong");
           }
           // console.log("error");
         });

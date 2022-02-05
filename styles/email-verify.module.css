@@ -1,0 +1,43 @@
+.verifyPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 160px 0 160px 0;
+}
+
+.confirmedIcon {
+  fill: #01a22e;
+  width: 50px;
+  height: 50px;
+}
+
+.verified {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 540px) {
+  .verifyPage {
+    margin: 90px 0 90px 0;
+  }
+}
+
+.loading {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #01a22e; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
