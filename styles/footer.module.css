@@ -50,6 +50,10 @@
   margin-top: 5px;
 }
 
+.playstoreBtn {
+  width: 120px;
+}
+
 @media screen and (max-width: 540px) {
   .footer {
     flex-direction: column-reverse;
