@@ -15,16 +15,14 @@ export default function Footer() {
         <div className={styles.footerDownloadApp}>
           <Typography variant="subtitle1">Download Our App</Typography>
           <div className={styles.playstoreBtn}>
-            <Link href="https://play.google.com/store/apps/details?id=com.healer.nature">
-              <a>
-                <Image
-                  src="/playstore.png"
-                  alt="get it on playstore"
-                  width={140}
-                  height={50}
-                />
-              </a>
-            </Link>
+            <a href="https://play.google.com/store/apps/details?id=com.healer.nature">
+              <Image
+                src="/playstore.png"
+                alt="get it on playstore"
+                width={120}
+                height={40}
+              />
+            </a>
           </div>
         </div>
         <div className={styles.followUs}>
