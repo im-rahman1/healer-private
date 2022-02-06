@@ -5,13 +5,13 @@
   margin: 160px 0 160px 0;
 }
 
-.confirmedIcon {
+.muiIcon {
   fill: #01a22e;
   width: 50px;
   height: 50px;
 }
 
-.verified {
+.response {
   display: flex;
   flex-direction: column;
   align-items: center;

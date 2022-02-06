@@ -1,0 +1,25 @@
+.wentWrongPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 160px 0 160px 0;
+}
+
+.muiIcon {
+  fill: #01a22e;
+  width: 50px;
+  height: 50px;
+}
+
+.response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 540px) {
+  .wentWrongPage {
+    margin: 90px 0 90px 0;
+  }
+}
