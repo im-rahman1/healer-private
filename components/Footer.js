@@ -58,7 +58,7 @@ export default function Footer() {
           <br />
           <Link href="/privacy-policy">Privacy Policy</Link>
           <br />
-          <Link href="/terms-conditions">Terms & Conditions</Link>
+          <Link href="/terms">Terms & Conditions</Link>
         </div>
       </div>
       <div className={styles.footerElement2}>
