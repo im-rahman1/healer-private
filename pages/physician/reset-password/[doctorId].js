@@ -36,6 +36,8 @@ export default function ResetPassword() {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  console.log(password1.value);
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
