@@ -9,9 +9,7 @@ export default function Verify() {
     <Layout title="Password Confirmed">
       <div className={styles.verified}>
         <CheckCircleIcon className={styles.confirmedIcon} />
-        <Typography variant="subtitle1">
-          Password Successfully Verified
-        </Typography>
+        <Typography variant="subtitle1">Email Successfully Verified</Typography>
         <Typography variant="subtitle1">Now You can Login </Typography>
       </div>
     </Layout>
