@@ -1,14 +1,11 @@
-import { Typography } from "@mui/material";
-import styles from "@/styles/privacyPolicy.module.css";
+import { Typography, Box } from "@mui/material";
 import Layout from "@/components/Layout";
 
 export default function PrivacyPolicy() {
   return (
     <Layout title="Privacy Policy">
-      <div className={styles.privactPolicyPage}>
-        <Typography
-          variant="h5"
-          sx={{ marginTop: "20px", marginBottom: "10px" }}>
+      <Box sx={{ margin: "30px 20px" }}>
+        <Typography variant="h5" sx={{ margin: "30px 0 5px 0" }}>
           Delivery Policy
         </Typography>
         <Typography>
@@ -38,7 +35,7 @@ export default function PrivacyPolicy() {
           Once the package is dispatched, you are bound by our terms and
           conditions of use of our shipping couriers. 
         </Typography>
-      </div>
+      </Box>
     </Layout>
   );
 }

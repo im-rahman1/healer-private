@@ -1,11 +1,11 @@
 import Layout from "@/components/Layout";
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import styles from "@/styles/terms.module.css";
 
 export default function Terms() {
   return (
     <Layout title="Terms & Conditions">
-      <div className={styles.termsPage}>
+      <Box className={styles.termsPage} sx={{ margin: "30px 20px" }}>
         <Typography
           variant="h4"
           sx={{ marginTop: "20px", marginBottom: "20px" }}>
@@ -22,7 +22,7 @@ export default function Terms() {
           services it provides. If you do not agree or accept these terms and
           conditions, you should not continue to use healer.pk
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           1. Using the Site
         </Typography>
         <Typography>
@@ -40,7 +40,7 @@ export default function Terms() {
           info@healer.pk If you do not comply to these terms and policies, we
           have the right to suspend and restrict you your access to our site.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           2 Rights and Responsibilities
         </Typography>
         <Typography>
@@ -53,10 +53,10 @@ export default function Terms() {
           cannot proceed to do so, therefore the prescriber will take full
           responsibility for your care and after care.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           Warranties
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           Warranties by you
         </Typography>
         <Typography>
@@ -65,7 +65,7 @@ export default function Terms() {
           your knowledge. Any questions answered untruthfully instantly voids
           this agreement.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           Warranties by us
         </Typography>
         <Typography>
@@ -74,13 +74,13 @@ export default function Terms() {
           of treating your condition. We agree and confirm that any medication
           prescribed and supplied is dispensed by qualified physician
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           Description of medication
         </Typography>
         <Typography>
           The description of medication is dependent on the prescription.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           3. Price
         </Typography>
         <Typography>
@@ -111,7 +111,7 @@ export default function Terms() {
           completed. All payments will forgo authorisation checks by the
           relevant card issuer The price of medicines in PKR.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           4. Ownership and Intellectual Property Rights
         </Typography>
         <Typography>
@@ -152,7 +152,7 @@ export default function Terms() {
           Nothing in these terms and conditions grants you any legal rights in
           the Site other than as necessary to enable you to access the Site.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           5.Submitting information to the website
         </Typography>
         <Typography>
@@ -180,7 +180,7 @@ export default function Terms() {
           We will only use the information that we collect about you lawfully
           and in accordance with the relevant Acts.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           6 Accuracy of information and availability of the site
         </Typography>
         <Typography>
@@ -203,7 +203,7 @@ export default function Terms() {
           uninterrupted nor can we promise the site will be available at all
           times.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           7 Hyperlinks and third-party sites
         </Typography>
         <Typography>
@@ -220,7 +220,7 @@ export default function Terms() {
           websites or resources, and accept no responsibility for them or for
           any loss or damage that may arise from your use of them.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           8 Limitation on our liability
         </Typography>
         <Typography>
@@ -251,7 +251,7 @@ export default function Terms() {
           financial loss that are not excluded by any of the categories set out
           above.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           9. Viruses, hacking and other offences
         </Typography>
         <Typography>
@@ -272,7 +272,7 @@ export default function Terms() {
           your downloading of any material posted on it, or on any website
           linked to it.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           10 Events beyond our control
         </Typography>
         <Typography>
@@ -282,7 +282,7 @@ export default function Terms() {
           breakdown of systems or network access, or flood, fire, explosion or
           accident.
         </Typography>
-        <Typography className={styles.heading} variant="h5">
+        <Typography sx={{ margin: "30px 0 5px 0" }} variant="h5">
           11 Variation
         </Typography>
         <Typography>
@@ -307,7 +307,7 @@ export default function Terms() {
           The service you have received, the medicines supplied or any other
           matter.
         </Typography>
-      </div>
+      </Box>
     </Layout>
   );
 }
