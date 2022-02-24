@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/footer.module.css";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import playStore from "../public/playStore.png";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -56,9 +56,18 @@ export default function Footer() {
           <br />
           <Link href="/contact">Contact us</Link>
           <br />
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <br />
           <Link href="/terms">Terms & Conditions</Link>
+          <br />
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Stack
+            sx={{
+              opacity: "0.8",
+              fontSize: "14px",
+              position: "relative",
+              left: "15px",
+            }}>
+            <Link href="/delivery-policy"> Delivery Policy</Link>
+          </Stack>
         </div>
       </div>
       <div className={styles.footerElement2}>
