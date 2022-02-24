@@ -63,3 +63,31 @@
     height: 200px;
   }
 }
+
+/* brandCard */
+.brandCard {
+  text-align: center;
+  margin: 5px 15px;
+  padding: 5px 0px;
+}
+
+/* topBrands */
+.topBrands {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border: 1.5px solid #01a22e;
+  border-radius: 50%;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.avatar__img {
+  position: relative;
+  top: 24px;
+}

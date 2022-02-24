@@ -27,3 +27,60 @@ a {
 .swiper-pagination-bullet-active {
   background-color: #01a22c !important;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #01a22f67;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #6b6b6b0c;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #01a22f67;
+  border-radius: 0px;
+  /* border: 3px solid #ffffff; */
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* loading */
+.loading {
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #01a22e; /* Blue */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+  margin-top: 20px;
+}
+
+/* response */
+.response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
