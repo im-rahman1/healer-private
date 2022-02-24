@@ -1,6 +1,6 @@
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout";
 import { Typography } from "@mui/material";
-import styles from "../styles/terms.module.css";
+import styles from "@/styles/terms.module.css";
 
 export default function Terms() {
   return (

@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-import Layout from "../../../components/Layout";
-import styles from "../../../styles/reset-password.module.css";
-import { theme } from "../../../styles/theme";
+import Layout from "@/components/Layout";
+import styles from "@/styles/reset-password.module.css";
+import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { API_URL } from "../../../config/reset-password";
+import { API_URL } from "@/config/reset-password";
 
 import { Typography } from "@mui/material";
 import {
@@ -36,7 +36,7 @@ export default function ResetPassword() {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  console.log(password1.value);
+  // console.log(values.password1.value);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -69,7 +69,7 @@ export default function ResetPassword() {
         })
         .then((res) => {
           if (res.data === true) {
-            router.replace("/physician/verify");
+            router.replace("/physician/reset-password/passwordChanged");
           }
           // console.log(res.data);
         })

@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
-import styles from "../styles/privacyPolicy.module.css";
-import Layout from "../components/Layout";
+import styles from "@/styles/privacyPolicy.module.css";
+import Layout from "@/components/Layout";
 
 export default function PrivacyPolicy() {
   return (

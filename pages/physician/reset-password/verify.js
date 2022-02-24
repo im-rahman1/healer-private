@@ -10,7 +10,7 @@ export default function Verify() {
       <div className={styles.verified}>
         <CheckCircleIcon className={styles.confirmedIcon} />
         <Typography variant="subtitle1">
-          Password Successfully Verified
+          Password Successfully Changed
         </Typography>
         <Typography variant="subtitle1">Now You can Login </Typography>
       </div>

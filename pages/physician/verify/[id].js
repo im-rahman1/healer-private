@@ -2,9 +2,9 @@ import React from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-import Layout from "../../../components/Layout";
-import { API_URL } from "../../../config/reset-password";
-import styles from "../../../styles/email-verify.module.css";
+import Layout from "@/components/Layout";
+import { API_URL } from "@/config/reset-password";
+import styles from "@/styles/email-verify.module.css";
 
 import ErrorIcon from "@mui/icons-material/Error";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
