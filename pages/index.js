@@ -12,7 +12,7 @@ import { Autoplay, Pagination } from "swiper";
 export default function Home() {
   return (
     <Layout>
-      <Swiper
+      {/* <Swiper
         pagination={{
           clickable: true,
         }}
@@ -51,7 +51,16 @@ export default function Home() {
             height={100}
           />
         </SwiperSlide>
-      </Swiper>
+      </Swiper> */}
+
+      <div className={styles.bannerContainer}>
+        <Image
+          className={styles.image}
+          alt="banner"
+          src="/banners.jpeg"
+          layout="fill"
+        />
+      </div>
     </Layout>
   );
 }
