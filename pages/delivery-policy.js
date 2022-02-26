@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 
 export default function PrivacyPolicy() {
   return (
-    <Layout title="Privacy Policy">
+    <Layout title="Delivery Policy">
       <Box sx={{ margin: "30px 20px" }}>
         <Typography variant="h5" sx={{ margin: "30px 0 5px 0" }}>
           Delivery Policy
@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
           in packages.
         </Typography>
         <Typography>
-          The estimated delivery time will be 2 to 3 days and the tracking
+          The estimated delivery time will be 1 to 3 days and the tracking
           information supplied.
         </Typography>
         <Typography>
@@ -22,10 +22,6 @@ export default function PrivacyPolicy() {
         </Typography>
         <Typography>
           Delivery will take place to the provided delivery address.
-        </Typography>
-        <Typography>
-          Identity verification software will be used to verify your age and
-          identity.
         </Typography>
         <Typography>
           Upon delivery you may be asked to present your ID to the delivery

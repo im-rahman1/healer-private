@@ -8,6 +8,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px;
+  margin: 150px 0;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .verified {
+    margin: 100px 0;
+  }
 }

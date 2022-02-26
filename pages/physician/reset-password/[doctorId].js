@@ -88,7 +88,7 @@ export default function ResetPassword() {
       description="robots"
       keywords="noindex, nofollow">
       <div className={styles.newPasswordForm}>
-        <Typography className={styles.formHeading} variant="h5">
+        <Typography sx={{ margin: "30px 0 10px 0" }} variant="h5">
           Enter your new password!
         </Typography>
         <ThemeProvider theme={theme}>
