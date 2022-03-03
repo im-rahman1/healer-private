@@ -7,6 +7,7 @@ import { Avatar, Typography, Divider } from "@mui/material";
 
 export default function Home() {
   const brands = [
+    { img: "/brandsIcons/Lasani.jpeg", name: "Lasani" },
     { img: "/brandsIcons/Ajmal.png", name: "Ajmal" },
     { img: "/brandsIcons/Aftab Qarshi.png", name: "Aftab Qarshi" },
     { img: "/brandsIcons/Ashraf.png", name: "Ashraf" },
@@ -16,7 +17,6 @@ export default function Home() {
     { img: "/brandsIcons/Qarshi.png", name: "Qarshi" },
     { img: "/brandsIcons/Tayyebi.png", name: "Tayyebi" },
     { img: "/brandsIcons/TT.jpeg", name: "TT" },
-    { img: "/brandsIcons/Uppal.jpeg", name: "Uppal" },
   ];
 
   const [shuffledArray, setShuffledArray] = useState([]);
@@ -56,6 +56,9 @@ export default function Home() {
       </div>
       <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
         Top Brands
+      </Typography>
+      <Typography sx={{ marginLeft: "12px", opacity: "0.7" }} variant="body2">
+        Order Medicines Of Top Brands
       </Typography>
       <div className={styles.topBrands}>
         {shuffledArray.map((brand) => (

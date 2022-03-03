@@ -6,9 +6,9 @@ import Layout from "@/components/Layout";
 import styles from "@/styles/reset-password.module.css";
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { API_URL } from "@/config/reset-password";
+import { API_URL } from "@/config/config";
 
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import {
   Button,
   FormControl,
@@ -87,8 +87,8 @@ export default function ResetPassword() {
       title="Reset Password"
       description="robots"
       keywords="noindex, nofollow">
-      <div className={styles.newPasswordForm}>
-        <Typography sx={{ margin: "30px 0 10px 0" }} variant="h5">
+      <Box sx={{ margin: "25px 0px" }} className={styles.newPasswordForm}>
+        <Typography className={styles.formHeading} variant="h5">
           Enter your new password!
         </Typography>
         <ThemeProvider theme={theme}>
@@ -154,7 +154,7 @@ export default function ResetPassword() {
             Submit
           </Button>
         </ThemeProvider>
-      </div>
+      </Box>
     </Layout>
   );
 }

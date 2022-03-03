@@ -30,6 +30,7 @@ export default function Header() {
           <li>
             <ThemeProvider theme={theme}>
               <Button
+                href="https://play.google.com/store/apps/details?id=com.healer.nature"
                 size="medium"
                 className={styles.btn}
                 color="primary"

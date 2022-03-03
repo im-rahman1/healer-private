@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 import Layout from "@/components/Layout";
-import { API_URL } from "@/config/reset-password";
+import { API_URL } from "@/config/config";
 import styles from "@/styles/email-verify.module.css";
 
 import ErrorIcon from "@mui/icons-material/Error";
