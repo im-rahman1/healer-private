@@ -132,35 +132,13 @@ export default function Contact() {
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
               General Inquery
             </Typography>
-            <Typography
-              className={styles.linkForPc}
-              variant="body2"
-              sx={{ color: "#01a22e" }}>
-              <a href="https://mail.google.com/mail/?view=cm&source=mailto&to=info@healer.pk">
-                info@healer.pk
-              </a>
-            </Typography>
-            <Typography
-              className={styles.linkForPhone}
-              variant="body2"
-              sx={{ color: "#01a22e" }}>
+            <Typography variant="body2" sx={{ color: "#01a22e" }}>
               <a href="mailto:info@healer.pk">info@healer.pk</a>
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
               Unani Medicine
             </Typography>
-            <Typography
-              className={styles.linkForPc}
-              variant="body2"
-              sx={{ color: "#01a22e" }}>
-              <a href="https://mail.google.com/mail/?view=cm&source=mailto&to=dawakhana@healer.pk">
-                dawakhana@healer.pk
-              </a>
-            </Typography>
-            <Typography
-              className={styles.linkForPhone}
-              variant="body2"
-              sx={{ color: "#01a22e" }}>
+            <Typography variant="body2" sx={{ color: "#01a22e" }}>
               <a href="mailto:dawakhana@healer.pk">dawakhana@healer.pk</a>
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>

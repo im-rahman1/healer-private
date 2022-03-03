@@ -38,21 +38,3 @@
 .notError {
   display: none;
 }
-
-.linkForPhone {
-  display: none;
-}
-
-.linkForPc {
-  display: block;
-}
-
-@media screen and (max-width: 499px) {
-  .linkForPhone {
-    display: block;
-  }
-
-  .linkForPc {
-    display: none;
-  }
-}
