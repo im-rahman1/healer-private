@@ -13,6 +13,7 @@ import { theme } from "@/styles/theme";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "@/config/config";
+import { LoadingButton } from "@mui/lab";
 
 export default function Contact() {
   const [data, setData] = useState({
@@ -24,6 +25,7 @@ export default function Contact() {
   });
   const [error, setError] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (prop) => (event) => {
     setData({ ...data, [prop]: event.target.value });
@@ -39,6 +41,7 @@ export default function Contact() {
       data.message.length > 10
     ) {
       // console.log(data);
+      setLoading(true);
       setError(false);
       axios
         .post(`${API_URL}/ContactUs/newSubmition`, {
@@ -47,7 +50,7 @@ export default function Contact() {
         .then((res) => {
           setSaved(true);
           setError(false);
-          // console.log("true");
+          setLoading(false);
           setData({
             name: "",
             phone: "",
@@ -55,10 +58,12 @@ export default function Contact() {
             message: "",
             respond: false,
           });
+          // console.log("true");
         })
         .catch((err) => {
           setSaved(false);
           setError(true);
+          setLoading(false);
         });
     } else {
       setError(true);
@@ -114,13 +119,14 @@ export default function Contact() {
                 Submitted
               </Alert>
             )}
-            <Button
+            <LoadingButton
+              loading={loading}
               onClick={handleSubmit}
               variant="contained"
               size="small"
               sx={{ width: "90px", marginTop: "20px" }}>
               Submit
-            </Button>
+            </LoadingButton>
           </div>
           <div className={styles.links}>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
