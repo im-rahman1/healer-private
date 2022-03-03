@@ -35,10 +35,10 @@ export default function Contact() {
 
   const handleSubmit = () => {
     if (
-      data.name.length > 3 &&
-      data.phone.length > 7 &&
-      data.email.length > 12 &&
-      data.message.length > 10
+      data.name.length > 2 &&
+      data.phone.length > 5 &&
+      data.email.length > 5 &&
+      data.message.length > 2
     ) {
       // console.log(data);
       setLoading(true);
