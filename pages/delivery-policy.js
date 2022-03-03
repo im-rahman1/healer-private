@@ -9,6 +9,10 @@ export default function PrivacyPolicy() {
           Delivery Policy
         </Typography>
         <Typography>
+          If the order is above PKR 1000 then delivery charges will be PKR 99.
+          Otherwise, delivery charges will be PKR 199.
+        </Typography>
+        <Typography>
           Delivery is completed by Trax Logistics. Medicines will be dispatched
           in packages.
         </Typography>
