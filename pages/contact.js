@@ -38,7 +38,7 @@ export default function Contact() {
       data.email.length > 12 &&
       data.message.length > 10
     ) {
-      console.log(data);
+      // console.log(data);
       setError(false);
       axios
         .post(`${API_URL}/ContactUs/newSubmition`, {
@@ -47,7 +47,7 @@ export default function Contact() {
         .then((res) => {
           setSaved(true);
           setError(false);
-          console.log("true");
+          // console.log("true");
           setData({
             name: "",
             phone: "",
