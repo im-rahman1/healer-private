@@ -9,8 +9,8 @@ export default function PrivacyPolicy() {
           Delivery Policy
         </Typography>
         <Typography>
-          If the order is above PKR 1000 then delivery charges will be PKR 99.
-          Otherwise, delivery charges will be PKR 199.
+          Delivery Charges are PKR 99 for Lahore. For other cities, delivery
+          charges are PKR 199. Discount will only applicable on prepaid orders.
         </Typography>
         <Typography>
           Delivery is completed by Trax Logistics. Medicines will be dispatched
