@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /physician/reset-password/verify
+Disallow: /physician/reset-password/[doctorId]
+Disallow: /physician/verify/[id]
+Disallow: /physician/verify
+Disallow: /physician/went-wrong
+Disallow: /health-feed/wp-admin

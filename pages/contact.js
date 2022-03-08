@@ -132,6 +132,7 @@ export default function Contact() {
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
               General Inquery
             </Typography>
+
             <Typography variant="body2" sx={{ color: "#01a22e" }}>
               <a href="mailto:info@healer.pk">info@healer.pk</a>
             </Typography>
