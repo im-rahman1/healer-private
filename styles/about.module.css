@@ -3,7 +3,7 @@
 marginbottom: 80px;
 }
 
-@media screen (min-width: 786px)  {
+@media screen and (min-width: 786px)  {
   .aboutPage {
     marginbottom: 30px;
 }
