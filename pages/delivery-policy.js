@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 export default function PrivacyPolicy() {
   return (
     <Layout title="Delivery Policy">
-      <Box sx={{ margin: "50px 20px" }}>
+      <Box sx={{ margin: "50px 20px 100px 20px" }}>
         <Typography variant="h5" sx={{ margin: "30px 0 5px 0" }}>
           Delivery Policy
         </Typography>
