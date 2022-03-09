@@ -17,8 +17,7 @@ export default function PrivacyPolicy() {
           in packages.
         </Typography>
         <Typography>
-          The estimated delivery time will be 1 to 3 days and the tracking
-          information supplied.
+          The estimated delivery time will be 1 to 3 days.
         </Typography>
         <Typography>
           If for any reason, there is a delay in delivery which is outside our
