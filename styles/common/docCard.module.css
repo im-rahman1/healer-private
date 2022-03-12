@@ -4,16 +4,16 @@
   /* border: 1px solid rgba(0, 0, 0, 0.2); */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   align-items: center;
-  padding: 5px 8px;
+  padding: 10px 13px;
   border-radius: 5px;
   margin: 10px;
-  width: 21rem;
+  min-width: 21rem;
 }
 
 @media screen and (max-width: 786px) {
   .docCard {
     flex-direction: column;
-    width: 13rem;
+    min-width: 13rem;
     padding: 20px 5px;
     text-align: center;
   }

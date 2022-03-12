@@ -3,7 +3,9 @@ import Layout from "@/components/Layout";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 
-import { Avatar, Typography, Divider } from "@mui/material";
+import DocCard from "@/components/common/docCard";
+
+import { Typography } from "@mui/material";
 
 export default function Home() {
   const brands = [
@@ -54,28 +56,43 @@ export default function Home() {
           layout="fill"
         />
       </div>
-      <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
-        Top Brands
-      </Typography>
-      <Typography sx={{ marginLeft: "12px", opacity: "0.7" }} variant="body2">
-        Order Medicines Of Top Brands
-      </Typography>
-      <div className={styles.topBrands}>
-        {shuffledArray.map((brand) => (
-          <div className={styles.brandCard} key={brand.name}>
-            <div className={styles.avatar}>
-              <div className={styles.avatar__img}>
-                <Image
-                  src={brand.img}
-                  alt={brand.name}
-                  width="65px"
-                  height="45px"
-                />
+      <div>
+        <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+          Featured
+        </Typography>
+        <Typography sx={{ marginLeft: "12px", opacity: "0.7" }} variant="body2">
+          Book Appointment with Top Physicians
+        </Typography>
+        <div className={styles.scrollable}>
+          {brands.map((d) => (
+            <DocCard key={d.name} />
+          ))}
+        </div>
+      </div>
+      <div>
+        <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+          Top Brands
+        </Typography>
+        <Typography sx={{ marginLeft: "12px", opacity: "0.7" }} variant="body2">
+          Order Medicines Of Top Brands
+        </Typography>
+        <div className={styles.scrollable}>
+          {shuffledArray.map((brand) => (
+            <div className={styles.brandCard} key={brand.name}>
+              <div className={styles.avatar}>
+                <div className={styles.avatar__img}>
+                  <Image
+                    src={brand.img}
+                    alt={brand.name}
+                    width="65px"
+                    height="45px"
+                  />
+                </div>
               </div>
+              <Typography sx={{ opacity: "0.8" }}>{brand.name}</Typography>
             </div>
-            <Typography sx={{ opacity: "0.8" }}>{brand.name}</Typography>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </Layout>
   );
