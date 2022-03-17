@@ -46,7 +46,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout>
+    <Layout title="Healer - Cure With Nature">
       <div className={styles.bannerContainer}>
         <Image
           priority

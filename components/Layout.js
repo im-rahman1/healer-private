@@ -24,6 +24,7 @@ export default function Layout({ title, keywords, description, children }) {
 
 Layout.defaultProps = {
   title: "Healer",
-  description: "Get online prescription",
+  description:
+    "Find, book and consult online with top qualified Hakeem, Order Herbal Unani Medicines online.",
   keywords: "physician, consultation, medicine, drugs",
 };
