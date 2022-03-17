@@ -3,7 +3,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 import styles from "../styles/layout.module.css";
 
-export default function Layout({ title, keywords, description, children }) {
+export default function Layout({
+  title,
+  keywords,
+  author,
+  description,
+  children,
+}) {
   return (
     <div>
       <Head>
@@ -13,7 +19,9 @@ export default function Layout({ title, keywords, description, children }) {
           type="image/x-icon"
         />
         <title>{title}</title>
-        <meta name={description} content={keywords} />
+        {keywords && <meta name="keywords" content={keywords} />}
+        {description && <meta name="description" content={description} />}
+        {author && <meta name="author" content={author} />}
       </Head>
       <Header />
       <div className={styles.container}>{children}</div>
