@@ -1,11 +1,11 @@
 import Layout from "@/components/Layout";
-import DocCard from "@/components/common/docCard";
+import ProductCard from "@/components/common/product";
 
 export default function HealthBlog() {
   return (
     <Layout title="Health Blog">
       <h1>HealthBlog</h1>
-      <DocCard />
+      <ProductCard />
     </Layout>
   );
 }

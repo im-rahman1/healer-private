@@ -10,11 +10,11 @@
   min-width: 21rem;
 }
 
-@media screen and (max-width: 786px) {
+/* @media screen and (max-width: 786px) {
   .docCard {
     flex-direction: column;
     min-width: 13rem;
     padding: 20px 5px;
     text-align: center;
   }
-}
+} */

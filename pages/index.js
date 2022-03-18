@@ -4,6 +4,7 @@ import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 
 import DocCard from "@/components/common/docCard";
+import ProductCard from "@/components/common/product";
 
 import { Typography } from "@mui/material";
 
@@ -66,6 +67,40 @@ export default function Home() {
         <div className={styles.scrollable}>
           {brands.map((d) => (
             <DocCard key={d.name} />
+          ))}
+        </div>
+      </div>
+      <div>
+        <div className={styles.productCardContainerTxt}>
+          <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+            Men&apos;s Health
+          </Typography>
+          <Typography
+            sx={{ margin: "20px 0 0 10px", color: "#01a22e" }}
+            variant="body2">
+            View All
+          </Typography>
+        </div>
+        <div className={styles.scrollable}>
+          {brands.map((d) => (
+            <ProductCard key={d.name} />
+          ))}
+        </div>
+      </div>
+      <div>
+        <div className={styles.productCardContainerTxt}>
+          <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+            Women&apos;s Health
+          </Typography>
+          <Typography
+            sx={{ margin: "20px 0 0 10px", color: "#01a22e" }}
+            variant="body2">
+            View All
+          </Typography>
+        </div>
+        <div className={styles.scrollable}>
+          {brands.map((d) => (
+            <ProductCard key={d.name} />
           ))}
         </div>
       </div>
