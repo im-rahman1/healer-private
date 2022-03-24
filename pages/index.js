@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
+import axios from "axios";
 
 import DocCard from "@/components/common/docCard";
 import ProductCard from "@/components/common/product";
@@ -11,8 +12,9 @@ import playStore from "../public/playStore.png";
 import { API_URL } from "./../config/config";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [data, setData] = useState([]);
   const [shuffledArray, setShuffledArray] = useState([]);
+  const [skip, setSkip] = useState(0);
   const brands = [
     { img: "/brandsIcons/Lasani.jpeg", name: "Lasani" },
     { img: "/brandsIcons/Ajmal.png", name: "Ajmal" },
@@ -25,6 +27,8 @@ export default function Home() {
     { img: "/brandsIcons/Tayyebi.png", name: "Tayyebi" },
     { img: "/brandsIcons/TT.jpeg", name: "TT" },
   ];
+  const [menProducts, setMenProducts] = useState([]);
+  const [womenProducts, setWomenProducts] = useState([]);
 
   function shuffle(array) {
     let currentIndex = array.length,
@@ -40,14 +44,67 @@ export default function Home() {
     setShuffledArray(array);
   }
 
-  const getProducts = () => {
-    axios.post(`${API_URL}/EcomMedicine/medicineForHomePage`, {});
+  const onScroll = (e) => {
+    let clientW = e.target.clientWidth;
+    let scrollL = e.target.scrollLeft;
+    let scrollW = e.target.scrollWidth;
+
+    let scroll = clientW + scrollL + 0.4;
+
+    if (scrollW <= scroll) {
+      //   console.log("bottom");
+      setSkip(skip + 10);
+      getProducts(skip);
+    }
+  };
+
+  //   /EcomMedicine/medicineForHomePage
+  // /EcomMedicine/getMedicines
+  const getProducts = (s) => {
+    axios
+      .post(`${API_URL}/EcomMedicine/medicineForHomePage`, {
+        skip: s,
+      })
+      .then((res) => {
+        // console.log(res);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const categorizeProducts = () => {
+    let menProduct = [];
+    let womenProduct = [];
+
+    data.map((product) => {
+      if (product.tags.includes(`women`)) {
+        womenProduct.push(product);
+      } else if (product.tags.includes(`men`)) {
+        menProduct.push(product);
+      }
+    });
+
+    setMenProducts(menProduct);
+    setWomenProducts(womenProduct);
   };
 
   // console.log(shuffledArray);
+  // console.log(data);
+  // console.log(skip);
+  console.log(menProducts);
+  console.log(womenProducts);
+
+  useEffect(() => {
+    categorizeProducts();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   useEffect(() => {
     shuffle(brands);
+    getProducts(skip);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -80,40 +137,44 @@ export default function Home() {
           </div>
         </div>
       )}
-      <div>
-        <div className={styles.productCardContainerTxt}>
-          <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
-            Men&apos;s Health
-          </Typography>
-          <Typography
-            sx={{ margin: "20px 0 0 10px", color: "#01a22e" }}
-            variant="body2">
-            View All
-          </Typography>
+      {menProducts.length > 0 && (
+        <div>
+          <div className={styles.productCardContainerTxt}>
+            <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+              Men&apos;s Health
+            </Typography>
+            <Typography
+              sx={{ margin: "20px 0 0 10px", color: "#01a22e" }}
+              variant="body2">
+              View All
+            </Typography>
+          </div>
+          <div onScroll={(e) => onScroll(e)} className={styles.scrollable}>
+            {menProducts.map((product) => (
+              <ProductCard key={product._id} name={product._id} />
+            ))}
+          </div>
         </div>
-        <div className={styles.scrollable}>
-          {brands.map((d) => (
-            <ProductCard key={d.name} />
-          ))}
+      )}
+      {womenProducts.length > 0 && (
+        <div>
+          <div className={styles.productCardContainerTxt}>
+            <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+              Women&apos;s Health
+            </Typography>
+            <Typography
+              sx={{ margin: "20px 0 0 10px", color: "#01a22e" }}
+              variant="body2">
+              View All
+            </Typography>
+          </div>
+          <div className={styles.scrollable}>
+            {womenProducts.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div>
-        <div className={styles.productCardContainerTxt}>
-          <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
-            Women&apos;s Health
-          </Typography>
-          <Typography
-            sx={{ margin: "20px 0 0 10px", color: "#01a22e" }}
-            variant="body2">
-            View All
-          </Typography>
-        </div>
-        <div className={styles.scrollable}>
-          {brands.map((d) => (
-            <ProductCard key={d.name} />
-          ))}
-        </div>
-      </div>
+      )}
       <div className={styles.downloadContainerContainer}>
         <div className={styles.downloadContainer}>
           <div className={styles.downloadImgContainer}>

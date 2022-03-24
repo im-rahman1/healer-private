@@ -26,7 +26,9 @@
 
 .product__img {
   position: relative;
-  height: 200px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
 }
 
 .product__price {
@@ -45,6 +47,6 @@
 
   .product__img {
     position: relative;
-    height: 165px;
+    height: 155px;
   }
 }
