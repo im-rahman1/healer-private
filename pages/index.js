@@ -10,6 +10,7 @@ import ProductCard from "@/components/common/product";
 import { Typography } from "@mui/material";
 import playStore from "../public/playStore.png";
 import { API_URL } from "./../config/config";
+import { Box } from "@mui/system";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -29,6 +30,13 @@ export default function Home() {
   ];
   const [menProducts, setMenProducts] = useState([]);
   const [womenProducts, setWomenProducts] = useState([]);
+
+  const muiStyles = {
+    img: {
+      width: "100%",
+      height: "100%",
+    },
+  };
 
   function shuffle(array) {
     let currentIndex = array.length,
@@ -112,13 +120,20 @@ export default function Home() {
   return (
     <Layout title="Healer - Cure With Nature">
       <div className={styles.bannerContainer}>
-        <Image
+        <Box
+          sx={muiStyles.img}
+          component="img"
+          alt="banner"
+          src="/banners.jpeg"
+        />
+        {/* <Image
           priority
           className={styles.image}
           alt="banner"
           src="/banners.jpeg"
           layout="fill"
-        />
+          rel="preload"
+        /> */}
       </div>
       {!brands && (
         <div>
@@ -178,7 +193,12 @@ export default function Home() {
       <div className={styles.downloadContainerContainer}>
         <div className={styles.downloadContainer}>
           <div className={styles.downloadImgContainer}>
-            <Image priority alt="banner" src="/downloadImg.jpg" layout="fill" />
+            <Box
+              sx={muiStyles.img}
+              component="img"
+              alt="download Image"
+              src="/downloadImg.jpg"
+            />
           </div>
           <div className={styles.downloadNowTxt}>
             <Typography variant="h5">Download The Healer Now</Typography>
