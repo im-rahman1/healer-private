@@ -62,8 +62,7 @@
 /* brandCard */
 .brandCard {
   text-align: center;
-  margin: 5px 15px;
-  padding: 5px 0px;
+  margin: 5px 10px;
 }
 
 .scrollable {
@@ -74,9 +73,9 @@
 
 /* topBrands */
 .avatar {
-  width: 96px;
-  height: 96px;
-  border: 1.5px solid #01a22e;
+  width: 76px;
+  height: 76px;
+  border: 1px solid #01a22e;
   border-radius: 50%;
   z-index: 10;
   overflow: hidden;
@@ -84,7 +83,7 @@
 
 .avatar__img {
   position: relative;
-  top: 24px;
+  top: 21px;
 }
 
 /* hide Scroll Bars */
@@ -117,14 +116,18 @@
 /*downloadConatiner*/
 .downloadContainer {
   display: grid;
-  grid-template-columns: 2fr 2fr;
-  max-width: 1024px;
+  grid-template-columns: 1fr 1fr;
+  /* max-width: 1024px; */
+  justify-items: center;
+  background-color: #dfdfdfb7;
+  padding: 40px 0px;
+  width: 100%;
 }
 
 /*downloadImg*/
 .downloadImgContainer {
-  height: 400px;
-  width: 200px;
+  height: 300px;
+  width: 145px;
   position: relative;
 }
 
@@ -136,19 +139,7 @@
 }
 
 .playstoreBtn {
-  width: 120px;
-}
-
-@media screen and (max-width: 786px) {
-  .downloadContainer {
-    margin: 10px;
-    justify-items: center;
-  }
-
-  .downloadImgContainer {
-    height: 300px;
-    width: 150px;
-  }
+  width: 100px;
 }
 
 @media screen and (max-width: 480px) {

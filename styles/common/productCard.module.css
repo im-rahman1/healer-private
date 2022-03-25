@@ -1,12 +1,11 @@
 .product {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  padding: 15px;
-  border-radius: 10px;
-  margin: 10px;
-  min-width: 15rem;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  padding: 10px;
+  margin: 10px;
+  min-width: 10rem;
 }
 
 .flex {
@@ -20,15 +19,14 @@
   color: #ffff;
   padding: 0 5px;
   border-radius: 5px;
-  /* text-decoration: line-through; */
   opacity: 0.8;
 }
 
 .product__img {
   position: relative;
-  height: 180px;
   display: flex;
   justify-content: center;
+  height: 120px;
 }
 
 .product__price {
@@ -41,12 +39,12 @@
   .product {
     padding: 10px;
     margin: 10px;
-    min-width: 13rem;
+    min-width: 10rem;
     gap: 0px;
   }
 
   .product__img {
     position: relative;
-    height: 155px;
+    height: 120px;
   }
 }

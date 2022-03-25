@@ -130,14 +130,6 @@ export default function Home(prop) {
           alt="banner"
           src="/banners.jpeg"
         />
-        {/* <Image
-          priority
-          className={styles.image}
-          alt="banner"
-          src="/banners.jpeg"
-          layout="fill"
-          rel="preload"
-        /> */}
       </div>
       {!brands && (
         <div>
@@ -159,7 +151,7 @@ export default function Home(prop) {
       {menProducts.length > 0 && (
         <div>
           <div className={styles.productCardContainerTxt}>
-            <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+            <Typography sx={{ margin: "20px 0 0 10px" }} variant="h6">
               Men&apos;s Health
             </Typography>
             <Typography
@@ -178,7 +170,7 @@ export default function Home(prop) {
       {womenProducts.length > 0 && (
         <div>
           <div className={styles.productCardContainerTxt}>
-            <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+            <Typography sx={{ margin: "20px 0 0 10px" }} variant="h6">
               Women&apos;s Health
             </Typography>
             <Typography
@@ -201,12 +193,12 @@ export default function Home(prop) {
               sx={muiStyles.img}
               component="img"
               alt="download Image"
-              src="/downloadImg.jpg"
+              src="/downloadImg.png"
             />
           </div>
           <div className={styles.downloadNowTxt}>
-            <Typography variant="h5">Download The Healer Now</Typography>
-            <Typography>
+            <Typography variant="h6">Download The Healer Now</Typography>
+            <Typography variant="body2">
               Get Video Consultation with the best Tabib. Order herbal Unani
               Medicines form the comfort of your home.
             </Typography>
@@ -219,7 +211,7 @@ export default function Home(prop) {
         </div>
       </div>
       <div>
-        <Typography sx={{ margin: "20px 0 0 10px" }} variant="h5">
+        <Typography sx={{ margin: "20px 0 0 10px" }} variant="h6">
           Top Brands
         </Typography>
         <Typography sx={{ marginLeft: "12px", opacity: "0.7" }} variant="body2">
@@ -233,8 +225,8 @@ export default function Home(prop) {
                   <Image
                     src={brand.img}
                     alt={brand.name}
-                    width="65px"
-                    height="45px"
+                    width="50px"
+                    height="33px"
                   />
                 </div>
               </div>

@@ -27,6 +27,10 @@ export default function ProductCard(pro) {
       height: "85%",
       margin: "15px 10px 0px 10px",
     },
+    select: {
+      height: "2rem",
+      opacity: 0.8,
+    },
   };
 
   const handleChange = (event) => {
@@ -83,6 +87,7 @@ export default function ProductCard(pro) {
       {product.perUnitPrice.length > 0 && (
         <ThemeProvider theme={theme}>
           <Select
+            sx={muiStyles.select}
             size="small"
             value={productVariant.number}
             onChange={handleChange}>
