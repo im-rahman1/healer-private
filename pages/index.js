@@ -12,7 +12,11 @@ import playStore from "../public/playStore.png";
 import { API_URL } from "./../config/config";
 import { Box } from "@mui/system";
 
-export default function Home() {
+export default function Home(prop) {
+  const products = prop.data;
+
+  console.log(products);
+
   const [data, setData] = useState([]);
   const [shuffledArray, setShuffledArray] = useState([]);
   const [skip, setSkip] = useState(0);
@@ -86,7 +90,7 @@ export default function Home() {
     let menProduct = [];
     let womenProduct = [];
 
-    data.map((product) => {
+    products.map((product) => {
       if (product.tags.includes(`women`)) {
         womenProduct.push(product);
       } else if (product.tags.includes(`men`)) {
@@ -105,14 +109,14 @@ export default function Home() {
   console.log(womenProducts);
 
   useEffect(() => {
-    categorizeProducts();
-
+    // categorizeProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   useEffect(() => {
     shuffle(brands);
-    getProducts(skip);
+    // getProducts(skip);
+    categorizeProducts();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -241,4 +245,15 @@ export default function Home() {
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await axios.post(`${API_URL}/EcomMedicine/medicineForHomePage`, {
+    skip: 0,
+  });
+  const data = res.data;
+
+  return {
+    props: { data },
+  };
 }

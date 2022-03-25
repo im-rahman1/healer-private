@@ -56,14 +56,6 @@ export default function ProductCard(pro) {
           alt={`${product.productName}Image`}
           src={product.image}
         />
-        <Image
-          priority
-          className={styles.image}
-          alt="banner"
-          // src="/khameera.webp"
-          src={"/products.healer.pk/Sharbat%20Toot%20Siah%20Qarshi.png"}
-          layout="fill"
-        />
       </div>
       <div>
         <Typography>{product.productName}</Typography>
