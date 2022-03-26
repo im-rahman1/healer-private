@@ -1,15 +1,66 @@
 .header {
   background: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  height: 56px;
-  color: #01a22e;
+  height: 68px;
   position: fixed;
   width: 100%;
+  display: flex;
+  flex-direction: column;
   z-index: 10;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.103);
+  padding: 0px 10px;
+  align-items: center;
+}
+
+.headerBottom {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  margin-top: 0.09rem;
+  /* gap: 10px; */
+}
+
+.scrollable {
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 10px;
+}
+
+@media screen and (min-width: 480px) {
+  .scrollable {
+    justify-content: space-evenly;
+  }
+}
+
+.menuChipContainer {
+  display: flex;
+  margin: 0px 5px;
+}
+
+/* hide Scroll Bars */
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollable {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.menuChip {
+  background: #01a22e;
+  width: 30px;
+  height: 20px;
+  margin: 2px 10px;
 }
 
 .logo {
@@ -41,10 +92,6 @@
   .btn {
     padding: 5px 10px;
     font-size: 12px;
-  }
-
-  .header {
-    padding: 0 15px;
   }
 
   .navLinks > ul {
