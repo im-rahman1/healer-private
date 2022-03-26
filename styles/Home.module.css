@@ -132,14 +132,21 @@
 }
 
 .downloadNowTxt {
-  max-width: 400px;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 5px;
+  margin-right: 10px;
 }
 
 .playstoreBtn {
   width: 100px;
+  margin-top: 5px;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 480px) {

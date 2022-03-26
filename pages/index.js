@@ -7,7 +7,7 @@ import axios from "axios";
 import DocCard from "@/components/common/docCard";
 import ProductCard from "@/components/common/product";
 
-import { Typography } from "@mui/material";
+import { Link, Typography } from "@mui/material";
 import playStore from "../public/playStore.png";
 import { API_URL } from "./../config/config";
 import { Box } from "@mui/system";
@@ -181,7 +181,14 @@ export default function Home(prop) {
           </div>
           <div className={styles.scrollable}>
             {womenProducts.map((product) => (
-              <ProductCard key={product._id} product={product} />
+              <Link
+                className={styles.link}
+                href={`/${product.type}/${product.brand}/${encodeURIComponent(
+                  product.productName
+                )}`}
+                key={product._id}>
+                <ProductCard product={product} />
+              </Link>
             ))}
           </div>
         </div>

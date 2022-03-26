@@ -6,6 +6,12 @@
   padding: 10px;
   margin: 10px;
   min-width: 10rem;
+  transition: all 0.2s;
+}
+
+.product:hover {
+  transform: scale(1.01);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .flex {
