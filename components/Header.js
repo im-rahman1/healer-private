@@ -15,6 +15,7 @@ import {
   Box,
   Button,
   Icon,
+  TextField,
 } from "@mui/material";
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
@@ -49,7 +50,7 @@ export default function Header() {
           </Link>
         </div>
         <div>
-          <div className={styles.navSearch}></div>
+          <div className={styles.navSearch}>{/* <TextField> */}</div>
         </div>
         <nav className={styles.navLinks}>
           <ul>
@@ -68,8 +69,7 @@ export default function Header() {
               <ThemeProvider theme={theme}>
                 <Button
                   href="https://play.google.com/store/apps/details?id=com.healer.nature"
-                  size="medium"
-                  className={styles.btn}
+                  size="small"
                   color="primary"
                   variant="outlined">
                   Download App

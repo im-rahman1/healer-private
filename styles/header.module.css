@@ -1,7 +1,7 @@
 .header {
   background: #fff;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  height: 68px;
+  height: 78px;
   position: fixed;
   width: 100%;
   display: flex;
@@ -13,8 +13,12 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.103);
-  padding: 0px 10px;
+  padding: 5px 10px;
   align-items: center;
+}
+
+.navSearch {
+  width: 100%;
 }
 
 .headerBottom {
