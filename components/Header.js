@@ -16,6 +16,7 @@ import {
   Button,
   Icon,
   TextField,
+  ButtonBase,
 } from "@mui/material";
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
@@ -66,15 +67,24 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <ThemeProvider theme={theme}>
-                <Button
-                  href="https://play.google.com/store/apps/details?id=com.healer.nature"
-                  size="small"
-                  color="primary"
-                  variant="outlined">
-                  Download App
-                </Button>
-              </ThemeProvider>
+              <div className={styles.inMobile}>
+                <ThemeProvider theme={theme}>
+                  <Button
+                    href="https://play.google.com/store/apps/details?id=com.healer.nature"
+                    size="small"
+                    color="primary"
+                    variant="outlined">
+                    Download App
+                  </Button>
+                </ThemeProvider>
+              </div>
+              <div className={styles.inDesktop}>
+                <ThemeProvider theme={theme}>
+                  <Button size="small" variant="outlined">
+                    Login/Signup
+                  </Button>
+                </ThemeProvider>
+              </div>
             </li>
           </ul>
         </nav>
@@ -97,9 +107,19 @@ export default function Header() {
             </Typography>
           </div>
         </div>
-        <Divider sx={{ marginRight: "5px" }} orientation="vertical" />
-        <div>
-          <Typography variant="caption">logIn/signUp</Typography>
+        <Divider
+          className={styles.inMobile}
+          sx={{ marginRight: "5px" }}
+          orientation="vertical"
+        />
+        <div className={styles.inMobile}>
+          <Link href="/login" passhref>
+            <a>
+              <Typography sx={muiStyles.text} variant="caption">
+                logIn/signUp
+              </Typography>
+            </a>
+          </Link>
         </div>
       </div>
     </header>

@@ -102,3 +102,22 @@
     gap: 10px;
   }
 }
+
+/* remove and show */
+.inMobile {
+  display: none;
+}
+
+.inDesktop {
+  display: block;
+}
+
+@media screen and (max-width: 786px) {
+  .inMobile {
+    display: block;
+  }
+
+  .inDesktop {
+    display: none;
+  }
+}
