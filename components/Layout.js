@@ -9,6 +9,7 @@ export default function Layout({
   author,
   description,
   children,
+  addProductJson,
 }) {
   return (
     <div>
@@ -22,6 +23,13 @@ export default function Layout({
         {keywords && <meta name="keywords" content={keywords} />}
         {description && <meta name="description" content={description} />}
         {author && <meta name="author" content={author} />}
+        {addProductJson && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={addProductJson}
+            key="product-jsonld"
+          />
+        )}
       </Head>
       <Header />
       <div className={styles.container}>{children}</div>

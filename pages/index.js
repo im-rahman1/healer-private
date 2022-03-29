@@ -12,10 +12,30 @@ import playStore from "../public/playStore.png";
 import { API_URL } from "./../config/config";
 import { Box } from "@mui/system";
 
+function addProductJsonLd() {
+  return {
+    __html: `{
+      "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Healer - Cure With Nature",
+    "url": "https://healer.pk",
+    "logo": "https://healer.pk/health-feed/healer-logo/",
+    "sameAs": [
+    "https://facebook.com/healercare",
+    "https://twitter.com/healercare",
+    "https://instagram.com/healercare",
+    "https://youtube.com/c/healercare",
+    "https://linkedin.com/company/healercare",
+    "https://healer.pk"
+  ]
+    }`,
+  };
+}
+
 export default function Home(prop) {
   const products = prop.data;
 
-  console.log(products);
+  // console.log(products);
 
   const [data, setData] = useState([]);
   const [shuffledArray, setShuffledArray] = useState([]);
@@ -122,7 +142,9 @@ export default function Home(prop) {
   }, []);
 
   return (
-    <Layout title="Healer - Cure With Nature">
+    <Layout
+      title="Healer - Cure With Nature"
+      addProductJson={addProductJsonLd()}>
       <div className={styles.bannerContainer}>
         <Box
           sx={muiStyles.img}
@@ -148,7 +170,7 @@ export default function Home(prop) {
           </div>
         </div>
       )}
-      {menProducts.length > 0 && (
+      {/* {menProducts.length > 0 && (
         <div>
           <div className={styles.productCardContainerTxt}>
             <Typography sx={{ margin: "20px 0 0 10px" }} variant="h6">
@@ -166,8 +188,8 @@ export default function Home(prop) {
             ))}
           </div>
         </div>
-      )}
-      {womenProducts.length > 0 && (
+      )} */}
+      {/* {womenProducts.length > 0 && (
         <div>
           <div className={styles.productCardContainerTxt}>
             <Typography sx={{ margin: "20px 0 0 10px" }} variant="h6">
@@ -192,7 +214,7 @@ export default function Home(prop) {
             ))}
           </div>
         </div>
-      )}
+      )} */}
       <div className={styles.downloadContainerContainer}>
         <div className={styles.downloadContainer}>
           <div className={styles.downloadImgContainer}>
