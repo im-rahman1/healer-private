@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import axios from "axios";
+import { TAGM_ID } from "./../config/config";
 
 import DocCard from "@/components/common/docCard";
 import ProductCard from "@/components/common/product";
@@ -11,6 +12,7 @@ import { Link, Typography } from "@mui/material";
 import playStore from "../public/playStore.png";
 import { API_URL } from "./../config/config";
 import { Box } from "@mui/system";
+import TagManager from "react-gtm-module";
 
 function addProductJsonLd() {
   return {
@@ -28,6 +30,18 @@ function addProductJsonLd() {
     "https://linkedin.com/company/healercare",
     "https://healer.pk"
   ]
+    }`,
+  };
+}
+
+function addTagManager() {
+  return {
+    __html: `{
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',${TAGM_ID});</script>
     }`,
   };
 }
@@ -137,13 +151,15 @@ export default function Home(prop) {
     shuffle(brands);
     // getProducts(skip);
     categorizeProducts();
+    TagManager.initialize({ gtmId: TAGM_ID });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Layout
-      title="Healer - Cure With Nature"
+      title="Healer | Cure With Nature"
+      // addTagManagerScript={addTagManager()}
       addProductJson={addProductJsonLd()}>
       <div className={styles.bannerContainer}>
         <Box

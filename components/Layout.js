@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
-import styles from "../styles/layout.module.css";
+import styles from "@/styles/layout.module.css";
 
 export default function Layout({
   title,
@@ -10,6 +10,7 @@ export default function Layout({
   description,
   children,
   addProductJson,
+  addTagManagerScript,
 }) {
   return (
     <div>
@@ -20,6 +21,10 @@ export default function Layout({
           type="image/x-icon"
         />
         <title>{title}</title>
+        {/* <script
+          dangerouslySetInnerHTML={addTagManagerScript}
+          key="tag-manager"
+        /> */}
         {keywords && <meta name="keywords" content={keywords} />}
         {description && <meta name="description" content={description} />}
         {author && <meta name="author" content={author} />}

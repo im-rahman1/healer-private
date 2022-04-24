@@ -67,60 +67,18 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <div className={styles.inMobile}>
-                <ThemeProvider theme={theme}>
-                  <Button
-                    href="https://play.google.com/store/apps/details?id=com.healer.nature"
-                    size="small"
-                    color="primary"
-                    variant="outlined">
-                    Download App
-                  </Button>
-                </ThemeProvider>
-              </div>
-              <div className={styles.inDesktop}>
-                <ThemeProvider theme={theme}>
-                  <Button size="small" variant="outlined">
-                    Login/Signup
-                  </Button>
-                </ThemeProvider>
-              </div>
+              <ThemeProvider theme={theme}>
+                <Button
+                  href="https://play.google.com/store/apps/details?id=com.healer.nature"
+                  size="small"
+                  color="primary"
+                  variant="outlined">
+                  Download App
+                </Button>
+              </ThemeProvider>
             </li>
           </ul>
         </nav>
-      </div>
-      <div className={styles.headerBottom}>
-        <div>Lahore</div>
-        <Divider sx={{ marginLeft: "5px" }} orientation="vertical" />
-        <div className={styles.scrollable}>
-          <div className={styles.menuChipContainer}>
-            <Typography sx={muiStyles.text} variant="caption">
-              Unani Physician
-            </Typography>
-          </div>
-          <div className={styles.menuChipContainer}>
-            <SimpleMenu />
-          </div>
-          <div className={styles.menuChipContainer}>
-            <Typography sx={muiStyles.text} variant="caption">
-              Order Medicine
-            </Typography>
-          </div>
-        </div>
-        <Divider
-          className={styles.inMobile}
-          sx={{ marginRight: "5px" }}
-          orientation="vertical"
-        />
-        <div className={styles.inMobile}>
-          <Link href="/login" passhref>
-            <a>
-              <Typography sx={muiStyles.text} variant="caption">
-                logIn/signUp
-              </Typography>
-            </a>
-          </Link>
-        </div>
       </div>
     </header>
   );
