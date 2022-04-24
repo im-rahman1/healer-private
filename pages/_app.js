@@ -1,17 +1,16 @@
+import React from "react";
 import "@/styles/globals.css";
 import Script from "next/script";
 import { TAGM_ID } from "@/config/config";
+import TagManager from "react-gtm-module";
 
 function MyApp({ Component, pageProps }) {
+  React.useEffect(() => {
+    TagManager.initialize({ gtmId: TAGM_ID });
+  }, []);
+
   return (
     <>
-      {/* <noscript>
-        <iframe
-          src={`https://www.googletagmanager.com/ns.html?id=${TAGM_ID}`}
-          height="0"
-          width="0"
-          styles="display:none;visibility:hidden"></iframe>
-      </noscript> */}
       <Component {...pageProps} />
     </>
   );

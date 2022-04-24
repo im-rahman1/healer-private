@@ -34,18 +34,6 @@ function addProductJsonLd() {
   };
 }
 
-function addTagManager() {
-  return {
-    __html: `{
-      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer',${TAGM_ID});</script>
-    }`,
-  };
-}
-
 export default function Home(prop) {
   const products = prop.data;
 
@@ -151,7 +139,7 @@ export default function Home(prop) {
     shuffle(brands);
     // getProducts(skip);
     categorizeProducts();
-    TagManager.initialize({ gtmId: TAGM_ID });
+    // TagManager.initialize({ gtmId: TAGM_ID });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -159,7 +147,6 @@ export default function Home(prop) {
   return (
     <Layout
       title="Healer | Cure With Nature"
-      // addTagManagerScript={addTagManager()}
       addProductJson={addProductJsonLd()}>
       <div className={styles.bannerContainer}>
         <Box
