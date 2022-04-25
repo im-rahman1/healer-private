@@ -71,7 +71,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.footerElement2}>
-        <Image src="/healer_web_white.png" alt="Logo" width={145} height={40} />
+        <Image src="/logo-white.png" alt="Logo" width={150} height={35} />
         <Typography variant="body2" className={styles.footerHeading}>
           2022 Healer.pk All rights reserved
         </Typography>

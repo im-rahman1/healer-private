@@ -140,7 +140,7 @@ export default function Contact() {
               Unani Medicine
             </Typography>
             <Typography variant="body2" sx={{ color: "#01a22e" }}>
-              <a href="mailto:dawakhana@healer.pk">dawakhana@healer.pk</a>
+              <a href="mailto:pharmacy@healer.pk">pharmacy@healer.pk</a>
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
               WhatsApp

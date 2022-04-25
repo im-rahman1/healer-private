@@ -46,7 +46,7 @@ export default function Header() {
         <div className={styles.logo}>
           <Link href="/">
             <a>
-              <Image alt="logo" src="/healer_web.png" width={110} height={30} />
+              <Image alt="logo" src="/logo-green.png" width={123} height={28} />
             </a>
           </Link>
         </div>

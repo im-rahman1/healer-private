@@ -127,8 +127,8 @@ export default function Home(prop) {
   // console.log(shuffledArray);
   // console.log(data);
   // console.log(skip);
-  console.log(menProducts);
-  console.log(womenProducts);
+  // console.log(menProducts);
+  // console.log(womenProducts);
 
   useEffect(() => {
     // categorizeProducts();
