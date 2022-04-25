@@ -59,15 +59,8 @@ export default function Footer() {
           <Link href="/terms">Terms & Conditions</Link>
           <br />
           <Link href="/privacy-policy">Privacy Policy</Link>
-          <Stack
-            sx={{
-              opacity: "0.8",
-              fontSize: "14px",
-              position: "relative",
-              left: "15px",
-            }}>
-            <Link href="/delivery-policy"> Delivery Policy</Link>
-          </Stack>
+          <br />
+          <Link href="/delivery-policy">Delivery Policy</Link>
         </div>
       </div>
       <div className={styles.footerElement2}>
