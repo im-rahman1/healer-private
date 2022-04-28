@@ -7,7 +7,7 @@
   border-radius: 0.4rem;
   overflow: hidden;
   margin: 0.7rem;
-  max-width: 65rem;
+  max-width: 63rem;
 }
 
 .bar {
@@ -118,13 +118,15 @@
   align-items: flex-end;
 }
 
-
-
 @media screen and (max-width: 786px) {
-
   .appointmentCard {
-    
     min-width: 320px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .appointmentCard {
+    min-width: 240px;
   }
 }
 
@@ -135,7 +137,7 @@
   }
 
   .flexEnd {
-    align-items: center;
+    /* align-items: center; */
   }
 }
 
