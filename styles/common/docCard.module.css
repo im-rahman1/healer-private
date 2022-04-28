@@ -2,7 +2,7 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   align-items: center;
   border-radius: 5px;
-  margin: 10px;
+  margin: 10px 5px;
   width: 1024px;
 }
 
@@ -20,7 +20,8 @@
 
 @media screen and (max-width: 540px) {
   .docCard {
-    width: 300px;
+    width: 95vw;
+    margin: 10px;
   }
 }
 
