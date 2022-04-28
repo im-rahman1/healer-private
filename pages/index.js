@@ -94,19 +94,19 @@ export default function Home(prop) {
 
   //   /EcomMedicine/medicineForHomePage
   // /EcomMedicine/getMedicines
-  const getProducts = (s) => {
-    axios
-      .post(`${API_URL}/EcomMedicine/medicineForHomePage`, {
-        skip: s,
-      })
-      .then((res) => {
-        // console.log(res);
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getProducts = (s) => {
+  //   axios
+  //     .post(`${API_URL}/EcomMedicine/medicineForHomePage`, {
+  //       skip: s,
+  //     })
+  //     .then((res) => {
+  //       // console.log(res);
+  //       setData(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const categorizeProducts = () => {
     let menProduct = [];
