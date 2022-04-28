@@ -77,6 +77,7 @@
 .bookAppointmentContainer {
   display: flex;
   overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
 .appointmentCard {
