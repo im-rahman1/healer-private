@@ -53,9 +53,15 @@
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 600px) {
   .bannerContainer {
-    height: 200px;
+    height: 210px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .bannerContainer {
+    height: 170px;
   }
 }
 

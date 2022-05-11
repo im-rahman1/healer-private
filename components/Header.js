@@ -1,25 +1,19 @@
-import React from "react";
+import React, {useState, } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/header.module.css";
 
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {
   IconButton,
   Divider,
   Typography,
-  Menu,
-  Box,
   Button,
-  Icon,
-  TextField,
-  ButtonBase,
 } from "@mui/material";
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const muiStyles = {
   text: {
@@ -35,14 +29,25 @@ const muiStyles = {
   },
   icon: {
     fontSize: "20px",
-    marginBottom: "0.18rem",
+    opacity: "0.4"
   },
+  menuIcon: {
+    color: '#01a22e'
+  }
 };
 
-export default function Header() {
+
+export default function Header({ onMenuClick }) {
   return (
     <header className={styles.header}>
       <div className={styles.headerTop}>
+        <div className={styles.menuIconContainer}>
+          <ThemeProvider theme={theme}>
+            <IconButton  onClick={() => onMenuClick()}  color="primary">
+              <MenuIcon  />  
+            </IconButton>
+          </ThemeProvider>
+        </div>
         <div className={styles.logo}>
           <Link href="/">
             <a>
@@ -50,97 +55,52 @@ export default function Header() {
             </a>
           </Link>
         </div>
-        <div>
-          <div className={styles.navSearch}>{/* <TextField> */}</div>
-        </div>
         <nav className={styles.navLinks}>
-          <ul>
-            <li>
-              <Link href="/cart" passHref>
-                <div>
-                  <ThemeProvider theme={theme}>
-                    <IconButton color="primary">
-                      <ShoppingCartIcon />
-                    </IconButton>
-                  </ThemeProvider>
-                </div>
-              </Link>
-            </li>
-            <li>
+          <Link href="/cart" passHref>
+            <div>
               <ThemeProvider theme={theme}>
-                <Button
-                  href="https://play.google.com/store/apps/details?id=com.healer.nature"
-                  size="small"
-                  color="primary"
-                  variant="outlined">
-                  Download App
-                </Button>
+                <IconButton color="primary">
+                  <ShoppingCartIcon />
+                </IconButton>
               </ThemeProvider>
-            </li>
-          </ul>
+            </div>
+          </Link>
+          {/* <ThemeProvider theme={theme}>
+            <Button
+              href="https://play.google.com/store/apps/details?id=com.healer.nature"
+              size="small"
+              color="primary"
+              variant="outlined">
+              Download App
+            </Button>
+          </ThemeProvider> */}
         </nav>
       </div>
+      <div className={styles.headerBottom}>
+        <div className={styles.bottom__location}>
+          <LocationOnIcon sx={muiStyles.icon} />
+          <Typography>City</Typography>
+        </div>
+        <div className={styles.bottom__navLinks}>
+          <Link href='/doctors'>
+            Unani Physicians
+          </Link>
+          <Link href='/'>
+            Order medicine
+          </Link>
+          <Link href='/'>
+            Brands
+          </Link>
+          <Link href='/'>
+            Health Feed
+          </Link>
+        </div>
+        <div>
+          <Typography variant="body2">
+            LogIn/SignUp
+          </Typography>
+        </div>
+      </div>
     </header>
-  );
-}
-
-function SimpleMenu(name, list, routing) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [clicked, setClicked] = React.useState(false);
-
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
-    setClicked(true);
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-    setClicked(false);
-  }
-
-  return (
-    <div>
-      <Box
-        sx={muiStyles.clickable}
-        aria-owns={anchorEl ? "simple-menu" : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-        // onMouseEnter={handleClick}
-      >
-        Brands{" "}
-        <Icon>
-          {clicked ? (
-            <KeyboardArrowUpIcon sx={muiStyles.icon} />
-          ) : (
-            <KeyboardArrowDownIcon sx={muiStyles.icon} />
-          )}
-        </Icon>
-      </Box>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        onMouseLeave={handleClose}>
-        {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-        <Button onClick={handleClose} size="small">
-          Mani
-        </Button>
-        <Button onClick={handleClose} size="small">
-          Usama
-        </Button>
-        <Button onClick={handleClose} size="small">
-          hello
-        </Button>
-        <Button onClick={handleClose} size="small">
-          nothing
-        </Button>
-        <Button onClick={handleClose} size="small">
-          All
-        </Button>
-      </Menu>
-    </div>
   );
 }

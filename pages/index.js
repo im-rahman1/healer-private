@@ -3,9 +3,8 @@ import Layout from "@/components/Layout";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import axios from "axios";
-import { TAGM_ID } from "./../config/config";
+// import { TAGM_ID } from "./../config/config";
 
-import DocCard from "@/components/common/docCard";
 import ProductCard from "@/components/common/product";
 
 import { Link, Typography } from "@mui/material";
@@ -60,7 +59,7 @@ export default function Home(prop) {
   const muiStyles = {
     img: {
       width: "100%",
-      height: "100%",
+      height: "110%",
     },
   };
 
