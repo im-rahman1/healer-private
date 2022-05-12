@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from 'next/image'
 import Header from "./Header";
 import Footer from "./Footer";
 import styles from "@/styles/layout.module.css";
 import { useRouter } from "next/router";
+import playStore from "../public/playStore.png";
 
 import {
   Drawer,
@@ -19,6 +21,7 @@ import {
   ListItemText,
   IconButton,
   Button,
+  CssBaseline,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import CloseIcon from "@mui/icons-material/Close";
@@ -61,74 +64,86 @@ export default function Layout({
 
   const drawer = (
     <div className={styles.drawer}>
-      <div className={styles.sideBarCloseIcon}>
-        <ThemeProvider theme={theme}>
-          <IconButton color="white" onClick={handleSideBar}>
-            <CloseIcon sx={{fontSize: '28px'}} />
-          </IconButton>
-        </ThemeProvider>
-      </div>
-      <div className={styles.info}>
-        <Avatar sx={muiStyles.avatar} />
-        <Typography sx={{color: '#fff'}}>Mani ch</Typography>
-      </div>
       <ThemeProvider theme={theme}>
-        <List sx={{ padding: 0 }}>
-          <Link href="/" passHref>
-            <ListItem
-              button={router.pathname == "/" ? false : true}
-              sx={
-                router.pathname == '/'
-                  ? { backgroundColor: "#01a22f23", cursor: "pointer" }
-                  : { cursor: "pointer" }
-              }>
-              <ListItemIcon>
-                <HomeIcon color="primary" />
-              </ListItemIcon>
-              <ListItemText className={styles.listItemText}>
-                Home
-              </ListItemText>
-            </ListItem>
-          </Link>
-          <Divider />
-          <Link href="/doctors" passHref>
-            <ListItem
-              button={router.pathname == "/doctors" ? false : true}
-              sx={
-                router.pathname.includes("doctors")
-                  ? { backgroundColor: "#01a22f23", cursor: "pointer" }
-                  : { cursor: "pointer" }
-              }>
-              <ListItemIcon>
-                <MedicalServicesIcon color="primary" />
-              </ListItemIcon>
-              <ListItemText className={styles.listItemText}>
-                Doctors
-              </ListItemText>
-            </ListItem>
-          </Link>
-          <Divider />
-          <Link href="https://healer.pk/health-feed" passHref>
-            <ListItem
-              button={router.pathname == "/health-feed" ? false : true}
-              sx={
-                router.pathname.includes("health-feed")
-                  ? { backgroundColor: "#01a22f23", cursor: "pointer" }
-                  : { cursor: "pointer" }
-              }>
-              <ListItemIcon>
-                <HealthAndSafetyIcon color="primary" />
-              </ListItemIcon>
-              <ListItemText className={styles.listItemText}>
-                Health Feed
-              </ListItemText>
-            </ListItem>
-          </Link>
-        </List>
+      <div>
+        <div className={styles.sideBarCloseIcon}>
+          <ThemeProvider theme={theme}>
+            <IconButton color="white" onClick={handleSideBar}>
+              <CloseIcon sx={{fontSize: '28px'}} />
+            </IconButton>
+          </ThemeProvider>
+        </div>
+        <div className={styles.info}>
+          <Avatar sx={muiStyles.avatar} />
+          <Typography sx={{color: '#fff'}}>Mani ch</Typography>
+        </div>
+          <List sx={{ padding: 0 }}>
+            <Link href="/" passHref>
+              <ListItem
+                button={router.pathname == "/" ? false : true}
+                sx={
+                  router.pathname == '/'
+                    ? { backgroundColor: "#01a22f23", cursor: "pointer" }
+                    : { cursor: "pointer" }
+                }>
+                <ListItemIcon>
+                  <HomeIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText className={styles.listItemText}>
+                  Home
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Divider />
+            <Link href="/doctors" passHref>
+              <ListItem
+                button={router.pathname == "/doctors" ? false : true}
+                sx={
+                  router.pathname.includes("doctors")
+                    ? { backgroundColor: "#01a22f23", cursor: "pointer" }
+                    : { cursor: "pointer" }
+                }>
+                <ListItemIcon>
+                  <MedicalServicesIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText className={styles.listItemText}>
+                  Doctors
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Divider />
+            <Link href="https://healer.pk/health-feed" passHref>
+              <ListItem
+                button={router.pathname == "/health-feed" ? false : true}
+                sx={
+                  router.pathname.includes("health-feed")
+                    ? { backgroundColor: "#01a22f23", cursor: "pointer" }
+                    : { cursor: "pointer" }
+                }>
+                <ListItemIcon>
+                  <HealthAndSafetyIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText className={styles.listItemText}>
+                  Health Feed
+                </ListItemText>
+              </ListItem>
+            </Link>
+          </List>
+      </div>
+      <div>
+        <div className={styles.logoutBtn}>
+          <Button size="small">Log Out</Button>
+        </div>
+        <div className={styles.downloadNowContainer}>
+            <Typography variant="caption">Download Healer App</Typography>
+            <div className={styles.playstoreBtn}>
+                <a href="https://play.google.com/store/apps/details?id=com.healer.nature">
+                  <Image src={playStore} alt="get it on playstore" />
+                </a>
+              </div>
+        </div>
+      </div>
       </ThemeProvider>
-      {/* <div>
-        <Typography sx={{ color: "#01a22e" }}>Log Out</Typography>
-      </div> */}
     </div>
   );
 

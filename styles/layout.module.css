@@ -9,6 +9,14 @@
 }
 
 /* drawer */
+.drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  justify-content: space-between
+}
+
 .info {
   width: 100%;
   display: flex;
@@ -28,7 +36,21 @@
   padding: 5px 0 0 5px;
 }
 
-/* .listItemText {
-  position: relative;
-  right: 10px;
-} */
+/* logoutBtn */
+.logoutBtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* downloadNowContainer */
+.downloadNowContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playstoreBtn {
+  width: 6rem;
+}
