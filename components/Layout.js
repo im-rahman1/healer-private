@@ -1,20 +1,46 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
+import Link from "next/link";
 import Header from "./Header";
 import Footer from "./Footer";
 import styles from "@/styles/layout.module.css";
+import { useRouter } from "next/router";
 
 import {
-  IconButton,
   Drawer,
-  Box
+  Box,
+  Avatar,
+  Typography,
+  Divider,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  List,
+  ListItemText,
+  IconButton,
+  Button,
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import PersonIcon from "@mui/icons-material/Person";
+import CloseIcon from "@mui/icons-material/Close";
+import HomeIcon from '@mui/icons-material/Home';
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
 
-const drawerWidth = 220;
+const drawerWidth = 260;
+
+const muiStyles = {
+  avatar: {
+    width: "5rem",
+    height: "5rem",
+  },
+  closeBtn: {
+    padding: "5px 0",
+    width: '20px'
+  }
+};
 
 export default function Layout({
   title,
@@ -23,9 +49,9 @@ export default function Layout({
   description,
   children,
   addProductJson,
-  window
+  window,
 }) {
-
+  const router = useRouter();
   const [showSideBar, setShowSideBar] = useState(false);
 
   const handleSideBar = () => {
@@ -34,26 +60,80 @@ export default function Layout({
   };
 
   const drawer = (
-    <div>
-      <div className={styles.logoContainer}>
-          <div className={styles.sideBarMenuIcon}>
-            <IconButton
-              onClick={handleSideBar}
-              sx={{
-                color: "#01a22e",
-              }}>
-              <MenuIcon />
-            </IconButton>
-          </div>
-          <div className={styles.logo}>
-            <Image alt="logo" src="/healer_web.png" width={118} height={32} />
-          </div>
-        </div>
+    <div className={styles.drawer}>
+      <div className={styles.sideBarCloseIcon}>
+        <ThemeProvider theme={theme}>
+          <IconButton color="white" onClick={handleSideBar}>
+            <CloseIcon sx={{fontSize: '28px'}} />
+          </IconButton>
+        </ThemeProvider>
+      </div>
+      <div className={styles.info}>
+        <Avatar sx={muiStyles.avatar} />
+        <Typography sx={{color: '#fff'}}>Mani ch</Typography>
+      </div>
+      <ThemeProvider theme={theme}>
+        <List sx={{ padding: 0 }}>
+          <Link href="/" passHref>
+            <ListItem
+              button={router.pathname == "/" ? false : true}
+              sx={
+                router.pathname == '/'
+                  ? { backgroundColor: "#01a22f23", cursor: "pointer" }
+                  : { cursor: "pointer" }
+              }>
+              <ListItemIcon>
+                <HomeIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText className={styles.listItemText}>
+                Home
+              </ListItemText>
+            </ListItem>
+          </Link>
+          <Divider />
+          <Link href="/doctors" passHref>
+            <ListItem
+              button={router.pathname == "/doctors" ? false : true}
+              sx={
+                router.pathname.includes("doctors")
+                  ? { backgroundColor: "#01a22f23", cursor: "pointer" }
+                  : { cursor: "pointer" }
+              }>
+              <ListItemIcon>
+                <MedicalServicesIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText className={styles.listItemText}>
+                Doctors
+              </ListItemText>
+            </ListItem>
+          </Link>
+          <Divider />
+          <Link href="https://healer.pk/health-feed" passHref>
+            <ListItem
+              button={router.pathname == "/health-feed" ? false : true}
+              sx={
+                router.pathname.includes("health-feed")
+                  ? { backgroundColor: "#01a22f23", cursor: "pointer" }
+                  : { cursor: "pointer" }
+              }>
+              <ListItemIcon>
+                <HealthAndSafetyIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText className={styles.listItemText}>
+                Health Feed
+              </ListItemText>
+            </ListItem>
+          </Link>
+        </List>
+      </ThemeProvider>
+      {/* <div>
+        <Typography sx={{ color: "#01a22e" }}>Log Out</Typography>
+      </div> */}
     </div>
   );
 
   const container =
-  window !== undefined ? () => window().document.body : undefined;
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div>
@@ -75,30 +155,30 @@ export default function Layout({
           />
         )}
       </Head>
-      <Header  onMenuClick={handleSideBar} />
-        <Box
-          className={styles.drawer}
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-          aria-label="mailbox folders">
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={showSideBar}
-            onClose={handleSideBar}
-            ModalProps={{
-              keepMounted: true,
-            }}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}>
-            {drawer}
-          </Drawer>
-        </Box>
+      <Header onMenuClick={handleSideBar} />
+      <Box
+        className={styles.drawer}
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={showSideBar}
+          onClose={handleSideBar}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: "block", sm: "block", md: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}>
+          {drawer}
+        </Drawer>
+      </Box>
       <Box component="main" className={styles.container}>
         <div>{children}</div>
       </Box>

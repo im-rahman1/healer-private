@@ -8,18 +8,27 @@
   }
 }
 
-.carousel_imgContainer {
-  display: block;
-  overflow: hidden;
+/* drawer */
+.info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 0 1.5rem 0;
+  background-color: #01a22e;
 }
 
-.carousel_img {
-  max-height: 200px;
+.link {
+
 }
 
-@media screen and (min-width: 786px) {
-  .drawer {
-    /* display: none; */
-  }
+.sideBarCloseIcon {
+  background: #01a22e;
+  padding: 5px 0 0 5px;
 }
 
+/* .listItemText {
+  position: relative;
+  right: 10px;
+} */

@@ -24,7 +24,7 @@
 }
 
 .headerBottom {
-  background: #dfdfdf44;
+  /* background: #dfdfdf44; */
   width: 100%;
   display: flex;
   justify-content: space-between;
