@@ -32,7 +32,7 @@ import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 
 const muiStyles = {
   avatar: {
