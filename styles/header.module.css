@@ -57,4 +57,9 @@
   .menuIconContainer {
     display: block;
   }
+
+  .divider {
+    display: none;
+  }
 }
+

@@ -76,7 +76,7 @@ export default function Header({ onMenuClick }) {
           </ThemeProvider> */}
         </nav>
       </div>
-      <Divider />
+      <Divider className={styles.divider} />
       <div className={styles.headerBottom}>
         <div className={styles.bottom__location}>
           <LocationOnIcon sx={muiStyles.icon} />
