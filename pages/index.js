@@ -165,11 +165,6 @@ export default function Home(prop) {
             variant="body2">
             Book Appointment with Top Physicians
           </Typography>
-          <div className={styles.scrollable}>
-            {brands.map((d) => (
-              <DocCard key={d.name} />
-            ))}
-          </div>
         </div>
       )}
       {/* {menProducts.length > 0 && (
