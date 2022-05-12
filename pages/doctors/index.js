@@ -6,7 +6,13 @@ import axios from "axios";
 import { API_URL } from "@/config/config";
 
 // mui
-import { Avatar, Breadcrumbs, Typography, Rating } from "@mui/material";
+import {
+  Avatar,
+  Breadcrumbs,
+  Typography,
+  Rating,
+  Skeleton,
+} from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import CircleIcon from "@mui/icons-material/Circle";
 
@@ -187,8 +193,37 @@ export default function Physicians() {
             </div>
           ))
       ) : (
-        <div>Loading...</div>
+        <div className={styles.skeletonContainer}>
+          <div className={styles.skeleton}>
+            <div className={styles.skeleton__header}>
+              <div>
+                <Skeleton variant="circular" width={70} height={70} />
+              </div>
+              <div className={styles.header__text}>
+                <Skeleton variant="text"/>
+                <Skeleton variant="text"/>
+                <Skeleton variant="text"/>
+              </div>
+            </div>
+              <Skeleton variant="rectangular" height={150} />
+          </div>
+          <div className={styles.skeleton}>
+            <div className={styles.skeleton__header}>
+              <div>
+                <Skeleton variant="circular" width={70} height={70} />
+              </div>
+              <div className={styles.header__text}>
+                <Skeleton variant="text"/>
+                <Skeleton variant="text"/>
+                <Skeleton variant="text"/>
+              </div>
+            </div>
+              <Skeleton variant="rectangular" height={150} />
+          </div>
+        </div>
       )}
     </Layout>
   );
 }
+
+// 273615

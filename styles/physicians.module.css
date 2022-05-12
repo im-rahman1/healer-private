@@ -115,3 +115,27 @@
   display: flex;
   justify-content: space-between;
 }
+
+
+/* skeletonContainer */
+.skeletonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.skeleton {
+  width: 90%;
+}
+
+.skeleton__header {
+  display: flex;
+  gap: 1rem;
+  margin: 0.8rem 0;
+}
+
+.header__text {
+  width: 100%;
+}
