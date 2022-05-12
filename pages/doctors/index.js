@@ -131,21 +131,23 @@ export default function Physicians() {
                             muiStyles.boldTxt
                           }>{`${doctor.doctor.title} ${doctor.doctor.fullName}`}</Typography>
                       </Link>
-                      <Typography
-                        sx={{ color: "#01a22e", opacity: "0.8" }}
-                        variant="body2">
-                        {doctor.doctor.practiceDomain}
-                      </Typography>
-                      <Typography sx={muiStyles.opacity} variant="caption">
-                        {doctor.doctor.study}
-                      </Typography>
-                      <Typography sx={muiStyles.opacity} variant="body2">
-                        {doctor.doctor.experience} years of experience
-                      </Typography>
+                      <div className={styles.doc__details}>
+                        <Typography
+                          sx={{ color: "#01a22e", opacity: "0.8" }}
+                          variant="caption">
+                          {doctor.doctor.practiceDomain}
+                        </Typography>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {doctor.doctor.study}
+                        </Typography>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {doctor.doctor.experience} years of experience
+                        </Typography>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <Typography sx={{ paddingLeft: "0.6rem" }}>
+                <Typography variant="body2" sx={{ paddingLeft: "0.6rem" }}>
                   Book Appointment
                 </Typography>
                 <div className={styles.appointments}>
@@ -157,8 +159,8 @@ export default function Physicians() {
                       </Typography>
                       <div className={styles.pricing}>
                         <div className={styles.availablity}>
-                          <CircleIcon sx={{ fontSize: "14px" }} />
-                          <Typography variant="body2">
+                          <CircleIcon sx={{ fontSize: "12px" }} />
+                          <Typography variant="caption">
                             Available Today
                           </Typography>
                         </div>
@@ -179,8 +181,8 @@ export default function Physicians() {
                       )}
                       <div className={styles.pricing}>
                         <div className={styles.availablity}>
-                          <CircleIcon sx={{ fontSize: "14px" }} />
-                          <Typography variant="body2">
+                          <CircleIcon sx={{ fontSize: "12px" }} />
+                          <Typography variant="caption">
                             Available Today
                           </Typography>
                         </div>

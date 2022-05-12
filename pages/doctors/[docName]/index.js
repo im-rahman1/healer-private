@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import styles from "@/styles/docInfo.module.css";
+import axios from "axios";
+import { API_URL } from "@/config/config";
 
 import {
   Typography,
@@ -44,7 +46,14 @@ const muiStyles = {
   },
 };
 
-export default function DocInfo({ docName }) {
+export default function DocInfo({ docData }) {
+
+  const [doc, setDoc] = useState({...docData})
+
+  console.log(doc);
+
+  const docDetails = doc.doctorDetails[0];
+
   const breadcrumbs = [
     <Link href="/" key="1" color="inherit" passHref>
       <Typography sx={muiStyles.link}>Home</Typography>
@@ -53,12 +62,13 @@ export default function DocInfo({ docName }) {
       <Typography sx={muiStyles.link}>Doctors</Typography>
     </Link>,
     <Typography key="3" color="text.primary">
-      {docName}
+      {`${docDetails.title} ${docDetails.fullName}`}
     </Typography>,
   ];
 
+
   return (
-    <Layout title={docName}>
+    <Layout title="">
       <div className={styles.breadcrumbContainer}>
         <Breadcrumbs separator="›" aria-label="breadcrumb">
           {breadcrumbs}
@@ -68,19 +78,19 @@ export default function DocInfo({ docName }) {
         <div className={styles.docInfoContainer}>
           <div className={styles.docInfoCard}>
             <div className={styles.docInfo}>
-              <Avatar variant="rounded" sx={muiStyles.avatar} />
+              <Avatar src={docDetails.profileImage} variant="rounded" sx={muiStyles.avatar} />
               <div>
                 <Typography sx={muiStyles.txtBolder} variant="body">
-                  Dr. Muhammad Rahman
+                {`${docDetails.title} ${docDetails.fullName}`}
                 </Typography>
                 <Typography variant="body2" sx={muiStyles.coloredText}>
-                  Unani Physician
+                  {docDetails.practiceDomain}
                 </Typography>
                 <Typography variant="body2" sx={muiStyles.opacity}>
-                  MBBS, Phd
+                {docDetails.study}
                 </Typography>
                 <Typography variant="body2" sx={muiStyles.opacity}>
-                  35 years of experience
+                {docDetails.experience} years of experience
                 </Typography>
               </div>
             </div>
@@ -288,10 +298,27 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { docName } = params;
 
+  const res = await axios
+  .post(`${API_URL}/doctor/doctorDetails`, {
+    "_id": docName
+  });
+
+  // if (!res) {
+  //   return {
+  //     redirect: {
+  //       destination: '/login',
+  //       permanent: false,
+  //   }
+  //   }
+  // }
+
+  console.log(res.data);
+
   // Pass data to the page via props
   return {
     props: {
-      docName,
+      docData: res.data,
     },
   };
 }
+

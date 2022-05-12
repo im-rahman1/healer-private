@@ -6,6 +6,15 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  align-items: center;
+  justify-content: center
+}
+
+@media screen and (max-width: 786px) {
+.header {
+  height: 52px;
+}
+
 }
 
 .headerTop {
@@ -47,6 +56,11 @@
 .bottom__location {
   display: flex;
   align-items: center;
+}
+
+.divider {
+  display: block;
+  width: 100%;
 }
 
 @media screen and (max-width: 786px) {

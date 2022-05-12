@@ -54,6 +54,11 @@
   gap: 0.7rem;
 }
 
+.doc__details {
+  display: flex;
+  flex-direction: column;
+}
+
 .badgeContainer {
   width: 100%;
   display: flex;
@@ -109,13 +114,13 @@
   display: flex;
   align-items: center;
   color: #01a223;
+  gap: 0.3rem;
 }
 
 .pricing {
   display: flex;
   justify-content: space-between;
 }
-
 
 /* skeletonContainer */
 .skeletonContainer {

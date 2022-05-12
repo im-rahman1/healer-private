@@ -1,10 +1,10 @@
 .container {
-  padding-top: 72px;
+  padding-top: 56px;
 }
 
 @media screen and (max-width: 786px) {
   .container {
-    padding-top: 43px;
+    padding-top: 36px;
   }
 }
 
