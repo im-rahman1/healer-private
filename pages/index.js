@@ -33,8 +33,8 @@ function addProductJsonLd() {
   };
 }
 
-export default function Home(prop) {
-  const products = prop.data;
+export default function Home() {
+  // const products = prop.data;
 
   // console.log(products);
 
@@ -77,19 +77,19 @@ export default function Home(prop) {
     setShuffledArray(array);
   }
 
-  const onScroll = (e) => {
-    let clientW = e.target.clientWidth;
-    let scrollL = e.target.scrollLeft;
-    let scrollW = e.target.scrollWidth;
+  // const onScroll = (e) => {
+  //   let clientW = e.target.clientWidth;
+  //   let scrollL = e.target.scrollLeft;
+  //   let scrollW = e.target.scrollWidth;
 
-    let scroll = clientW + scrollL + 0.4;
+  //   let scroll = clientW + scrollL + 0.4;
 
-    if (scrollW <= scroll) {
-      //   console.log("bottom");
-      setSkip(skip + 10);
-      getProducts(skip);
-    }
-  };
+  //   if (scrollW <= scroll) {
+  //     //   console.log("bottom");
+  //     setSkip(skip + 10);
+  //     getProducts(skip);
+  //   }
+  // };
 
   //   /EcomMedicine/medicineForHomePage
   // /EcomMedicine/getMedicines
@@ -107,21 +107,21 @@ export default function Home(prop) {
   //     });
   // };
 
-  const categorizeProducts = () => {
-    let menProduct = [];
-    let womenProduct = [];
+  // const categorizeProducts = () => {
+  //   let menProduct = [];
+  //   let womenProduct = [];
 
-    products.map((product) => {
-      if (product.tags.includes(`women`)) {
-        womenProduct.push(product);
-      } else if (product.tags.includes(`men`)) {
-        menProduct.push(product);
-      }
-    });
+  //   products.map((product) => {
+  //     if (product.tags.includes(`women`)) {
+  //       womenProduct.push(product);
+  //     } else if (product.tags.includes(`men`)) {
+  //       menProduct.push(product);
+  //     }
+  //   });
 
-    setMenProducts(menProduct);
-    setWomenProducts(womenProduct);
-  };
+  //   setMenProducts(menProduct);
+  //   setWomenProducts(womenProduct);
+  // };
 
   // console.log(shuffledArray);
   // console.log(data);
@@ -137,7 +137,7 @@ export default function Home(prop) {
   useEffect(() => {
     shuffle(brands);
     // getProducts(skip);
-    categorizeProducts();
+    // categorizeProducts();
     // TagManager.initialize({ gtmId: TAGM_ID });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -265,13 +265,13 @@ export default function Home(prop) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await axios.post(`${API_URL}/EcomMedicine/medicineForHomePage`, {
-    skip: 0,
-  });
-  const data = res.data;
+// export async function getServerSideProps() {
+//   const res = await axios.post(`${API_URL}/EcomMedicine/medicineForHomePage`, {
+//     skip: 0,
+//   });
+//   const data = res.data;
 
-  return {
-    props: { data },
-  };
-}
+//   return {
+//     props: { data },
+//   };
+// }

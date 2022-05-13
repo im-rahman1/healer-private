@@ -24,8 +24,8 @@ const muiStyles = {
     },
   },
   avatar: {
-    width: "3.5rem",
-    height: "3.5rem",
+    width: "4rem",
+    height: "4rem",
     position: "relative",
     top: "0.7rem",
     cursor: "pointer",
@@ -37,6 +37,19 @@ const muiStyles = {
     fontWeight: "bold",
     cursor: "pointer",
   },
+  clinicName: {
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    width: "100%",
+    whiteSpace: "nowrap",
+    color: "#01a22e"
+  },
+  clinicAddress: {
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    width: "100%",
+    whiteSpace: "nowrap"
+  }
 };
 
 const breadcrumbs = [
@@ -84,8 +97,8 @@ export default function Physicians() {
         doctors
           .filter(
             (doctor) =>
-              (doctor.doctor._id != "61c95c85e42128d4a149606c") &
-              (doctor.doctor._id != "61c95c5fe42128d4a1496069")
+              (doctor.doctor._id != "61c95c85e42128d4a149606c1") &
+              (doctor.doctor._id != "61c95c5fe42128d4a14960691")
           )
           .map((doctor) => (
             <div key={doctor.doctor._id} className={styles.DocCardContainer}>
@@ -119,7 +132,7 @@ export default function Physicians() {
                     <Link href={`/doctors/${doctor.doctor._id}`} passHref>
                       <Avatar
                         src={doctor.doctor.profileImage}
-                        variant="rounded"
+                        // variant="rounded"
                         sx={muiStyles.avatar}
                         alt="Doctor's profile image"
                       />
@@ -174,8 +187,12 @@ export default function Physicians() {
                     <div className={styles.appointment}>
                       <Typography variant="body2">InClinic</Typography>
                       {doctor.doctor.clinicName && (
-                        <Typography sx={muiStyles.opacity} variant="caption">
-                          {doctor.doctor.clinicName},
+                        <Typography sx={muiStyles.clinicName} variant="caption">
+                          {doctor.doctor.clinicName}
+                        </Typography>
+                      )}
+                      {doctor.doctor.clinicName && (
+                        <Typography  sx={muiStyles.clinicAddress} variant="caption">
                           {doctor.doctor.clinicAddress}
                         </Typography>
                       )}

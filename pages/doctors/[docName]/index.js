@@ -47,12 +47,12 @@ const muiStyles = {
 };
 
 export default function DocInfo({ docData }) {
-
-  const [doc, setDoc] = useState({...docData})
-
-  console.log(doc);
+  const [doc, setDoc] = useState({ ...docData });
+  const [week1, setWeek1] = useState([]);
+  const [week2, setWeek2] = useState([]);
 
   const docDetails = doc.doctorDetails[0];
+  const docServices = doc.practice[0];
 
   const breadcrumbs = [
     <Link href="/" key="1" color="inherit" passHref>
@@ -66,9 +66,52 @@ export default function DocInfo({ docData }) {
     </Typography>,
   ];
 
+  function extractDays() {
+    const weekFirst = docServices.weekFirst;
+    const weekSecond = docServices.weekSecond;
+    let daysOfWeek1 = Object.keys(weekFirst).filter((key) => weekFirst[key]);
+    let daysOfWeek2 = Object.keys(weekSecond).filter((key) => weekSecond[key]);
+
+    setWeek1(daysOfWeek1);
+    setWeek2(daysOfWeek2);
+  }
+
+  function convertT(time) {
+    time = time
+      .toString()
+      .match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+    if (time.length > 1) {
+      // If time format correct
+      time = time.slice(1); // Remove full string match value
+      time[5] =+ time[0] < 12 ? "AM" : "PM"; // Set AM/PM
+      time[0] =+ time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join(""); // return adjusted time or original string
+  }
+
+  function convertTime (time) {
+    if(time <= 9) {
+      return convertT(`0${time}:00`);
+    } else {
+      return convertT(`${time}:00`);
+    }
+  }
+
+
+  // console.log(docServices);
+  // console.log(week1);
+  // console.log(week2);
+
+  useEffect(() => {
+    extractDays();
+
+    console.log(convertTime(0));
+
+  }, []);
 
   return (
-    <Layout title="">
+    <Layout title={`${docDetails.title} ${docDetails.fullName}`}>
       <div className={styles.breadcrumbContainer}>
         <Breadcrumbs separator="›" aria-label="breadcrumb">
           {breadcrumbs}
@@ -78,19 +121,19 @@ export default function DocInfo({ docData }) {
         <div className={styles.docInfoContainer}>
           <div className={styles.docInfoCard}>
             <div className={styles.docInfo}>
-              <Avatar src={docDetails.profileImage} variant="rounded" sx={muiStyles.avatar} />
+              <Avatar src={docDetails.profileImage} sx={muiStyles.avatar} />
               <div>
                 <Typography sx={muiStyles.txtBolder} variant="body">
-                {`${docDetails.title} ${docDetails.fullName}`}
+                  {`${docDetails.title} ${docDetails.fullName}`}
                 </Typography>
                 <Typography variant="body2" sx={muiStyles.coloredText}>
                   {docDetails.practiceDomain}
                 </Typography>
                 <Typography variant="body2" sx={muiStyles.opacity}>
-                {docDetails.study}
+                  {docDetails.study}
                 </Typography>
                 <Typography variant="body2" sx={muiStyles.opacity}>
-                {docDetails.experience} years of experience
+                  {docDetails.experience} years of experience
                 </Typography>
               </div>
             </div>
@@ -110,10 +153,10 @@ export default function DocInfo({ docData }) {
                 <div className={styles.services__body}>
                   <Typography variant="body2">• lorem ipsum</Typography>
                   <Typography variant="body2">• lorem ipsum</Typography>
-                  <Typography  variant="body2">• lorem ipsum</Typography>
-                  <Typography  variant="body2">• lorem ipsum</Typography>
-                  <Typography  variant="body2">• lorem ipsum</Typography>
-                  <Typography  variant="body2">• lorem ipsum</Typography>
+                  <Typography variant="body2">• lorem ipsum</Typography>
+                  <Typography variant="body2">• lorem ipsum</Typography>
+                  <Typography variant="body2">• lorem ipsum</Typography>
+                  <Typography variant="body2">• lorem ipsum</Typography>
                   <Typography variant="body2">• lorem ipsum</Typography>
                   <Typography variant="body2">• lorem ipsum</Typography>
                   <Typography variant="body2">• lorem ipsum</Typography>
@@ -125,9 +168,9 @@ export default function DocInfo({ docData }) {
                 <div className={styles.services__body}>
                   <Typography variant="body2">• lorem ipsum</Typography>
                   <Typography variant="body2">• lorem ipsum</Typography>
-                  <Typography  variant="body2">• lorem ipsum</Typography>
-                  <Typography  variant="body2">• lorem ipsum</Typography>
-                  <Typography  variant="body2">• lorem ipsum</Typography>
+                  <Typography variant="body2">• lorem ipsum</Typography>
+                  <Typography variant="body2">• lorem ipsum</Typography>
+                  <Typography variant="body2">• lorem ipsum</Typography>
                 </div>
               </div>
               <div className={styles.services}>
@@ -135,37 +178,42 @@ export default function DocInfo({ docData }) {
                 <div className={styles.services__body}>
                   <Typography variant="body2">• lorem ipsum</Typography>
                   <Typography variant="body2">• lorem ipsum</Typography>
-                  <Typography  variant="body2">• lorem ipsum</Typography>
+                  <Typography variant="body2">• lorem ipsum</Typography>
                 </div>
               </div>
             </div>
             <div className={styles.appointmentContainerForPhone}>
               <div className={styles.appointment}>
                 <Typography sx={muiStyles.coloredText}>
-                  Virtual Virtual Appointment
+                  Online Virtual Appointment
                 </Typography>
                 <Divider />
                 <div className={styles.appointment__fee}>
                   <Typography variant="body2">Fee</Typography>
-                  <Typography variant="body2">PKR1000</Typography>
+                  <Typography variant="body2">
+                    PKR{docServices.videoFee}
+                  </Typography>
                 </div>
                 <Divider />
                 <div className={styles.scheduleContainer}>
+                  {week1.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <Typography sx={muiStyles.opacity} variant="body2">
+                        8:00am to 3:00pm
+                        {/* {convertTime()} */}
+                      </Typography>
+                    </div>
+                  ))}
                   <div className={styles.schedule}>
                     <Typography
                       sx={muiStyles.appointmentDays}
                       variant="caption">
-                      Mon, Tue, Wed, thu, fri
-                    </Typography>
-                    <Typography sx={muiStyles.opacity} variant="body2">
-                      8:00am to 3:00pm
-                    </Typography>
-                  </div>
-                  <div className={styles.schedule}>
-                    <Typography
-                      sx={muiStyles.appointmentDays}
-                      variant="caption">
-                      Sat, Sun
+                      Sat
                     </Typography>
                     <Typography sx={muiStyles.opacity} variant="body2">
                       8:00am to 3:00pm
@@ -179,13 +227,23 @@ export default function DocInfo({ docData }) {
                 </ThemeProvider>
               </div>
               <div className={styles.appointment}>
-                <Typography sx={muiStyles.coloredText}>
-                  InClinic Appointment
-                </Typography>
+                <div>
+                  <Typography sx={muiStyles.coloredText}>
+                    InClinic Appointment
+                  </Typography>
+                  <Typography sx={muiStyles.opacity} variant="caption">
+                    {docDetails.clinicName}
+                  </Typography>
+                  <Typography sx={muiStyles.opacity} variant="caption">
+                    {docDetails.clinicAddress}
+                  </Typography>
+                </div>
                 <Divider />
                 <div className={styles.appointment__fee}>
                   <Typography variant="body2">Fee</Typography>
-                  <Typography variant="body2">PKR1000</Typography>
+                  <Typography variant="body2">
+                    PKR {docServices.inClinicFee}
+                  </Typography>
                 </div>
                 <Divider />
                 <div className={styles.scheduleContainer}>
@@ -193,7 +251,7 @@ export default function DocInfo({ docData }) {
                     <Typography
                       sx={muiStyles.appointmentDays}
                       variant="caption">
-                      Mon, Tue, Wed, thu, fri
+                      Mon
                     </Typography>
                     <Typography sx={muiStyles.opacity} variant="body2">
                       8:00am to 3:00pm
@@ -233,7 +291,7 @@ export default function DocInfo({ docData }) {
             <div className={styles.scheduleContainer}>
               <div className={styles.schedule}>
                 <Typography sx={muiStyles.appointmentDays} variant="caption">
-                  Mon, Tue, Wed, thu, fri
+                  Mon
                 </Typography>
                 <Typography sx={muiStyles.opacity} variant="body2">
                   8:00am to 3:00pm
@@ -241,7 +299,7 @@ export default function DocInfo({ docData }) {
               </div>
               <div className={styles.schedule}>
                 <Typography sx={muiStyles.appointmentDays} variant="caption">
-                  Sat, Sun
+                  Sat
                 </Typography>
                 <Typography sx={muiStyles.opacity} variant="body2">
                   8:00am to 3:00pm
@@ -267,7 +325,7 @@ export default function DocInfo({ docData }) {
             <div className={styles.scheduleContainer}>
               <div className={styles.schedule}>
                 <Typography sx={muiStyles.appointmentDays} variant="caption">
-                  Mon, Tue, Wed, thu, fri
+                  Mon
                 </Typography>
                 <Typography sx={muiStyles.opacity} variant="body2">
                   8:00am to 3:00pm
@@ -275,7 +333,7 @@ export default function DocInfo({ docData }) {
               </div>
               <div className={styles.schedule}>
                 <Typography sx={muiStyles.appointmentDays} variant="caption">
-                  Sat, Sun
+                  Sat
                 </Typography>
                 <Typography sx={muiStyles.opacity} variant="body2">
                   8:00am to 3:00pm
@@ -298,9 +356,8 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { docName } = params;
 
-  const res = await axios
-  .post(`${API_URL}/doctor/doctorDetails`, {
-    "_id": docName
+  const res = await axios.post(`${API_URL}/doctor/doctorDetails`, {
+    _id: docName,
   });
 
   // if (!res) {
@@ -321,4 +378,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
