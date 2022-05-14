@@ -16,6 +16,11 @@ import DoneIcon from "@mui/icons-material/Done";
 import { minWidth } from "@mui/system";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./../../../styles/theme";
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion from "@mui/material/Accordion";
+import MuiAccordionSummary from "@mui/material/AccordionSummary";
+import MuiAccordionDetails from "@mui/material/AccordionDetails";
 
 const muiStyles = {
   link: {
@@ -56,15 +61,58 @@ export default function DocInfo({ docData }) {
 
   const breadcrumbs = [
     <Link href="/" key="1" color="inherit" passHref>
-      <Typography sx={muiStyles.link}>Home</Typography>
+      <Typography variant="caption" sx={muiStyles.link}>Home</Typography>
     </Link>,
     <Link href="/doctors" key="1" color="inherit" passHref>
-      <Typography sx={muiStyles.link}>Doctors</Typography>
+      <Typography variant="caption" sx={muiStyles.link}>Doctors</Typography>
     </Link>,
-    <Typography key="3" color="text.primary">
+    <Typography variant="caption" key="3" color="text.primary">
       {`${docDetails.title} ${docDetails.fullName}`}
     </Typography>,
   ];
+
+  const Accordion = styled((props) => (
+    <MuiAccordion disableGutters elevation={0} square {...props} />
+  ))(({ theme }) => ({
+    // border: `1px solid ${theme.palette.divider}`,
+    margin: "0px",
+    padding: "0",
+    "&:not(:last-child)": {
+      borderBottom: 0,
+    },
+    "&:before": {
+      display: "none",
+    },
+  }));
+
+  const AccordionSummary = styled((props) => (
+    <MuiAccordionSummary
+      expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+      {...props}
+    />
+  ))(({ theme }) => ({
+    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+      transform: "rotate(90deg)",
+    },
+    "& .MuiAccordionSummary-content": {
+      marginLeft: theme.spacing(1),
+      margin: "0px",
+      padding: "0px",
+    },
+    width: "100%",
+    minHeight: "2rem",
+  }));
+
+  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    // padding: theme.spacing(2),
+    // borderTop: "1px solid rgba(0, 0, 0, .125)",
+    margin: "0 0 0 20px",
+    padding: "0",
+
+    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+      transform: "rotate(90deg)",
+    },
+  }));
 
   function extractDays() {
     const weekFirst = docServices.weekFirst;
@@ -84,7 +132,7 @@ export default function DocInfo({ docData }) {
     if (time.length > 1) {
       // If time format correct
       time = time.slice(1); // Remove full string match value
-      time[5] =+ time[0] < 12 ? "AM" : "PM"; // Set AM/PM
+      time[5] =+ time[0] < 12 ? "am" : "pm"; // Set AM/PM
       time[0] =+ time[0] % 12 || 12; // Adjust hours
     }
     return time.join(""); // return adjusted time or original string
@@ -93,20 +141,21 @@ export default function DocInfo({ docData }) {
   function convertTime (time) {
     if(time <= 9) {
       return convertT(`0${time}:00`);
+    } else if (time == 24) {
+      return convertT(`00:00`);
     } else {
       return convertT(`${time}:00`);
     }
   }
 
-
-  // console.log(docServices);
+  console.log(docServices);
   // console.log(week1);
   // console.log(week2);
 
   useEffect(() => {
     extractDays();
 
-    console.log(convertTime(0));
+    // console.log(convertTime(22));
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -197,29 +246,56 @@ export default function DocInfo({ docData }) {
                 </div>
                 <Divider />
                 <div className={styles.scheduleContainer}>
-                  {week1.map((day) => (
+                  {week1.length > 0 && week1.map((day) => (
                     <div className={styles.schedule} key={day}>
                       <Typography
                         sx={muiStyles.appointmentDays}
                         variant="caption">
                         {day}
                       </Typography>
-                      <Typography sx={muiStyles.opacity} variant="body2">
-                        8:00am to 3:00pm
-                        {/* {convertTime()} */}
-                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeFirstSessionOne.start | docServices.timeFirstSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionOne.start)} to ${convertTime(docServices.timeFirstSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeFirstSessionTwo.start | docServices.timeFirstSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionTwo.start)} to ${convertTime(docServices.timeFirstSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
                     </div>
                   ))}
-                  <div className={styles.schedule}>
-                    <Typography
-                      sx={muiStyles.appointmentDays}
-                      variant="caption">
-                      Sat
-                    </Typography>
-                    <Typography sx={muiStyles.opacity} variant="body2">
-                      8:00am to 3:00pm
-                    </Typography>
-                  </div>
+                  {week2.length > 0 && week2.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeSecondSessionOne.start | docServices.timeSecondSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionOne.start)} to ${convertTime(docServices.timeSecondSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeSecondSessionTwo.start | docServices.timeSecondSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionTwo.start)} to ${convertTime(docServices.timeSecondSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
                 </div>
                 <ThemeProvider theme={theme}>
                   <Button size="small" variant="contained">
@@ -232,9 +308,11 @@ export default function DocInfo({ docData }) {
                   <Typography sx={muiStyles.coloredText}>
                     InClinic Appointment
                   </Typography>
-                  <Typography sx={muiStyles.opacity} variant="caption">
-                    {docDetails.clinicName}
-                  </Typography>
+                  <div>
+                    <Typography sx={muiStyles.opacity} variant="caption">
+                      {docDetails.clinicName}
+                    </Typography>
+                  </div>
                   <Typography sx={muiStyles.opacity} variant="caption">
                     {docDetails.clinicAddress}
                   </Typography>
@@ -248,26 +326,56 @@ export default function DocInfo({ docData }) {
                 </div>
                 <Divider />
                 <div className={styles.scheduleContainer}>
-                  <div className={styles.schedule}>
-                    <Typography
-                      sx={muiStyles.appointmentDays}
-                      variant="caption">
-                      Mon
-                    </Typography>
-                    <Typography sx={muiStyles.opacity} variant="body2">
-                      8:00am to 3:00pm
-                    </Typography>
-                  </div>
-                  <div className={styles.schedule}>
-                    <Typography
-                      sx={muiStyles.appointmentDays}
-                      variant="caption">
-                      Sat, Sun
-                    </Typography>
-                    <Typography sx={muiStyles.opacity} variant="body2">
-                      8:00am to 3:00pm
-                    </Typography>
-                  </div>
+                  {week1.length > 0 && week1.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeFirstSessionOne.start | docServices.timeFirstSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionOne.start)} to ${convertTime(docServices.timeFirstSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeFirstSessionTwo.start | docServices.timeFirstSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionTwo.start)} to ${convertTime(docServices.timeFirstSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
+                  {week2.length > 0 && week2.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeSecondSessionOne.start | docServices.timeSecondSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionOne.start)} to ${convertTime(docServices.timeSecondSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeSecondSessionTwo.start | docServices.timeSecondSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionTwo.start)} to ${convertTime(docServices.timeSecondSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
                 </div>
                 <ThemeProvider theme={theme}>
                   <Button size="small" variant="contained">
@@ -279,76 +387,217 @@ export default function DocInfo({ docData }) {
           </div>
         </div>
         <div className={styles.appointmentContainerForPC}>
-          <div className={styles.appointment}>
-            <Typography sx={muiStyles.coloredText}>
-              Virtual Virtual Appointment
-            </Typography>
-            <Divider />
-            <div className={styles.appointment__fee}>
-              <Typography variant="body2">Fee</Typography>
-              <Typography variant="body2">PKR1000</Typography>
-            </div>
-            <Divider />
-            <div className={styles.scheduleContainer}>
-              <div className={styles.schedule}>
-                <Typography sx={muiStyles.appointmentDays} variant="caption">
-                  Mon
+              <div className={styles.appointment}>
+                <Typography sx={muiStyles.coloredText}>
+                  Online Virtual Appointment
                 </Typography>
-                <Typography sx={muiStyles.opacity} variant="body2">
-                  8:00am to 3:00pm
-                </Typography>
+                <Divider />
+                <div className={styles.appointment__fee}>
+                  <Typography variant="body2">Fee</Typography>
+                  <Typography variant="body2">
+                    PKR{docServices.videoFee}
+                  </Typography>
+                </div>
+                <Divider />
+                <div className={styles.scheduleContainer}>
+                  {week1.length > 0 && week1.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="body2">
+                          {
+                            (docServices.timeFirstSessionOne.start | docServices.timeFirstSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionOne.start)} - ${convertTime(docServices.timeFirstSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="body2">
+                          {
+                            (docServices.timeFirstSessionTwo.start | docServices.timeFirstSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionTwo.start)} - ${convertTime(docServices.timeFirstSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
+                  {week2.length > 0 && week2.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="body2">
+                          {
+                            (docServices.timeSecondSessionOne.start | docServices.timeSecondSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionOne.start)} - ${convertTime(docServices.timeSecondSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="body2">
+                          {
+                            (docServices.timeSecondSessionTwo.start | docServices.timeSecondSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionTwo.start)} - ${convertTime(docServices.timeSecondSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <ThemeProvider theme={theme}>
+                  <Button size="small" variant="contained">
+                    Book Appointment
+                  </Button>
+                </ThemeProvider>
               </div>
-              <div className={styles.schedule}>
-                <Typography sx={muiStyles.appointmentDays} variant="caption">
-                  Sat
-                </Typography>
-                <Typography sx={muiStyles.opacity} variant="body2">
-                  8:00am to 3:00pm
-                </Typography>
+              <div className={styles.appointment}>
+                <div>
+                  <Typography sx={muiStyles.coloredText}>
+                    InClinic Appointment
+                  </Typography>
+                  <div>
+                    <Typography sx={muiStyles.opacity} variant="caption">
+                      {docDetails.clinicName}
+                    </Typography>
+                  </div>
+                  <Typography sx={muiStyles.opacity} variant="caption">
+                    {docDetails.clinicAddress}
+                  </Typography>
+                </div>
+                <Divider />
+                <div className={styles.appointment__fee}>
+                  <Typography variant="body2">Fee</Typography>
+                  <Typography variant="body2">
+                    PKR {docServices.inClinicFee}
+                  </Typography>
+                </div>
+                <Divider />
+                <div className={styles.scheduleContainer}>
+                  {week1.length > 0 && week1.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeFirstSessionOne.start | docServices.timeFirstSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionOne.start)} to ${convertTime(docServices.timeFirstSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeFirstSessionTwo.start | docServices.timeFirstSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionTwo.start)} to ${convertTime(docServices.timeFirstSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
+                  {week2.length > 0 && week2.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeSecondSessionOne.start | docServices.timeSecondSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionOne.start)} to ${convertTime(docServices.timeSecondSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="caption">
+                          {
+                            (docServices.timeSecondSessionTwo.start | docServices.timeSecondSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionTwo.start)} to ${convertTime(docServices.timeSecondSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <ThemeProvider theme={theme}>
+                  <Button size="small" variant="contained">
+                    Book Appointment
+                  </Button>
+                </ThemeProvider>
               </div>
-            </div>
-            <ThemeProvider theme={theme}>
-              <Button size="small" variant="contained">
-                Book Appointment
-              </Button>
-            </ThemeProvider>
-          </div>
-          <div className={styles.appointment}>
-            <Typography sx={muiStyles.coloredText}>
-              InClinic Appointment
-            </Typography>
-            <Divider />
-            <div className={styles.appointment__fee}>
-              <Typography variant="body2">Fee</Typography>
-              <Typography variant="body2">PKR1000</Typography>
-            </div>
-            <Divider />
-            <div className={styles.scheduleContainer}>
-              <div className={styles.schedule}>
-                <Typography sx={muiStyles.appointmentDays} variant="caption">
-                  Mon
-                </Typography>
-                <Typography sx={muiStyles.opacity} variant="body2">
-                  8:00am to 3:00pm
-                </Typography>
-              </div>
-              <div className={styles.schedule}>
-                <Typography sx={muiStyles.appointmentDays} variant="caption">
-                  Sat
-                </Typography>
-                <Typography sx={muiStyles.opacity} variant="body2">
-                  8:00am to 3:00pm
-                </Typography>
-              </div>
-            </div>
-            <ThemeProvider theme={theme}>
-              <Button size="small" variant="contained">
-                Book Appointment
-              </Button>
-            </ThemeProvider>
-          </div>
         </div>
       </div>
+      <Accordion>
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Typography>Collapsible Group Item #1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        <div className={styles.scheduleContainer}>
+                  {week1.length > 0 && week1.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="body2">
+                          {
+                            (docServices.timeFirstSessionOne.start | docServices.timeFirstSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionOne.start)} - ${convertTime(docServices.timeFirstSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="body2">
+                          {
+                            (docServices.timeFirstSessionTwo.start | docServices.timeFirstSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeFirstSessionTwo.start)} - ${convertTime(docServices.timeFirstSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
+                  {week2.length > 0 && week2.map((day) => (
+                    <div className={styles.schedule} key={day}>
+                      <Typography
+                        sx={muiStyles.appointmentDays}
+                        variant="caption">
+                        {day}
+                      </Typography>
+                      <div className={styles.schedule__timing}>
+                        <Typography sx={muiStyles.opacity} variant="body2">
+                          {
+                            (docServices.timeSecondSessionOne.start | docServices.timeSecondSessionOne.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionOne.start)} - ${convertTime(docServices.timeSecondSessionOne.end)}`
+                            )
+                          }
+                        </Typography>
+                          <Typography sx={muiStyles.opacity} variant="body2">
+                          {
+                            (docServices.timeSecondSessionTwo.start | docServices.timeSecondSessionTwo.end) != 0 && (
+                              `${convertTime(docServices.timeSecondSessionTwo.start)} - ${convertTime(docServices.timeSecondSessionTwo.end)}`
+                            )
+                          }
+                          </Typography>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+        </AccordionDetails>
+      </Accordion>
     </Layout>
   );
 }

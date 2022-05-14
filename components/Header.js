@@ -86,7 +86,7 @@ export default function Header({ onMenuClick }) {
         </div>
         <div className={styles.bottom__navLinks}>
           <Link href='/doctors'>
-            Unani Physicians
+            Doctors
           </Link>
           <Link href='/'>
             Order medicine

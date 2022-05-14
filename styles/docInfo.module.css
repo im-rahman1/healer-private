@@ -110,7 +110,6 @@
   }
 }
 
-
 /* appointment */
 .appointment {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -145,9 +144,14 @@
 .schedule {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 }
 
+.schedule__timing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* servicesContainer */
 .servicesContainer {
