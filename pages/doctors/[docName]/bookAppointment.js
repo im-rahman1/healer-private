@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
-import styles from "@/styles/BookAppointment.module.css";
+import styles from "@/styles/bookAppointment.module.css";
 import axios from "axios";
 import { API_URL } from "@/config/config";
 
