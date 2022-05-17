@@ -1,5 +1,5 @@
 .container {
-  padding-top: 56px;
+  padding-top: 28px;
 }
 
 @media screen and (max-width: 786px) {
@@ -28,9 +28,6 @@
   background-color: #01a22e;
 }
 
-.link {
-
-}
 
 .sideBarCloseIcon {
   background: #01a22e;

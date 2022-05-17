@@ -1,0 +1,207 @@
+/* breadcrumbContainer */
+.breadcrumbContainer {
+  margin: 0.6rem 0 0.6rem 1rem ;
+}
+
+/* docContainer */
+.docContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.docInfoCard {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 0.4rem;
+  margin: 1rem;
+  padding: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 880px;
+}
+
+@media screen and (max-width: 900px) {
+  .docInfoCard {
+    width: 94vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .docInfoCard {
+    width: 100vw;
+    padding: 0.5rem;
+  }
+}
+
+.docInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+  .docInfoCard {
+    box-shadow: rgba(99, 99, 99, 0) 0px 2px 8px 0px;
+    margin: 0;
+  }
+}
+
+
+
+/* badge */
+.badge {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  display: flex;
+  width: fit-content;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  padding-left: 0.1rem;
+  align-items: center;
+}
+
+.badge__txt {
+  background-color: #01a22e;
+  padding:  0.1rem 0.6rem 0.1rem 0.3rem;
+  color: white;
+}
+
+@media screen and (max-width: 500px) {
+  .badge {
+    display: none;
+  }
+}
+
+
+/* bookAppointmentContainer */
+.bookAppointmentContainer {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 0.6rem 1rem;
+  border-radius: 0.4rem;
+  width: 880px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .bookAppointmentContainer {
+    width: 94vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .bookAppointmentContainer {
+    width: 100vw;
+    padding: 0;
+  }
+}
+
+/* timeSlot */
+.timeSlot {
+  border: 2px solid rgb(207, 207, 207);
+  width: 5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin: 0 1rem 1rem 0;
+  display: inline-block;
+}
+
+.timeSlot:hover {
+  background-color: #01a22f0e;
+}
+
+.timeSlotSelected {
+  border: 2px solid #01a22e;
+  width: 5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.3rem 0.7rem;
+  background-color: #01a22f0e;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin: 0 1rem 1rem 0;
+  display: inline-block;
+}
+
+@media screen and (max-width: 500px) {
+  .timeSlot {
+    margin: 0 0.5rem 1rem 1rem;
+  }
+
+  .timeSlotSelected {
+    margin: 0 0.5rem 1rem 1rem;
+  }
+
+}
+
+/* timeSlotContainer */
+.timeSlotContainer {
+  width: 100%;
+}
+
+/* daySlot */
+.daySlot {
+  border: 2px solid rgb(207, 207, 207);
+  width: 7rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.daySlot:hover {
+  background-color: #01a22f0e;
+}
+
+.daySlotSelected {
+  border: 2px solid #01a22e;
+  width: 7rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.3rem;
+  background-color: #01a22f0e;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+/* daySlotContainer */
+.daySlotContainer {
+  display: flex;
+  gap: 1rem;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 500px) {
+  .daySlot {
+    margin: 0 0rem 0rem 1rem;
+  }
+
+  .daySlotSelected {
+    margin: 0 0rem 0rem 1rem;
+  }
+
+  .daySlotContainer {
+    gap: 0rem;
+  }
+
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.daySlotContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.daySlotContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

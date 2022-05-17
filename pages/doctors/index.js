@@ -26,9 +26,9 @@ const muiStyles = {
   avatar: {
     width: "4rem",
     height: "4rem",
-    position: "relative",
-    top: "0.7rem",
-    cursor: "pointer",
+    // position: "relative",
+    // top: "0.7rem",
+    // cursor: "pointer",
   },
   opacity: {
     opacity: "0.8",
@@ -160,7 +160,7 @@ export default function Physicians() {
                     </div>
                   </div>
                 </div>
-                <Typography variant="body2" sx={{ paddingLeft: "0.6rem" }}>
+                <Typography variant="body2" sx={{ paddingLeft: "0.6rem", paddingTop: "0.6rem" }}>
                   Book Appointment
                 </Typography>
                 <div className={styles.appointments}>
@@ -213,6 +213,19 @@ export default function Physicians() {
           ))
       ) : (
         <div className={styles.skeletonContainer}>
+          <div className={styles.skeleton}>
+            <div className={styles.skeleton__header}>
+              <div>
+                <Skeleton variant="circular" width={70} height={70} />
+              </div>
+              <div className={styles.header__text}>
+                <Skeleton variant="text"/>
+                <Skeleton variant="text"/>
+                <Skeleton variant="text"/>
+              </div>
+            </div>
+              <Skeleton variant="rectangular" height={150} />
+          </div>
           <div className={styles.skeleton}>
             <div className={styles.skeleton__header}>
               <div>

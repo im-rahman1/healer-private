@@ -208,7 +208,7 @@ export default function DocInfo({ docData }) {
           </div>
           <div className={styles.servicesContainer}>
             <div className={styles.services__text}>
-              {docDetails.therapySpecialities && (
+              {docDetails.therapySpecialities.length > 0 && (
                 <div className={styles.services}>
                   <Typography variant="h6">Services & Treatments:</Typography>
                   <div className={styles.services__body}>
@@ -220,7 +220,7 @@ export default function DocInfo({ docData }) {
                   </div>
                 </div>
               )}
-              {docDetails.specialization && (
+              {docDetails.specialization.length > 0 && (
                 <div className={styles.services}>
                   <Typography variant="h6">Specialization:</Typography>
                   <div className={styles.services__body}>
@@ -232,7 +232,7 @@ export default function DocInfo({ docData }) {
                   </div>
                 </div>
               )}
-              {docDetails.studyDetails && (
+              {docDetails.studyDetails.length > 0 && (
                 <div className={styles.services}>
                   <Typography variant="h6">Qualification:</Typography>
                   <div className={styles.services__body}>
@@ -246,6 +246,248 @@ export default function DocInfo({ docData }) {
               )}
             </div>
             <div className={styles.appointmentContainerForPhone}>
+              {
+                docServices.videoFeeAvail && (
+                  <div className={styles.appointment}>
+                    <Typography sx={muiStyles.coloredText}>
+                      Online Virtual Appointment
+                    </Typography>
+                    <Divider />
+                    <div className={styles.appointment__fee}>
+                      <Typography variant="body2">Fee</Typography>
+                      <Typography variant="body2">
+                        PKR{docServices.videoFee}
+                      </Typography>
+                    </div>
+                    <Divider />
+                    <Accordion>
+                      <AccordionSummary
+                        aria-controls="panel1d-content"
+                        id="panel1d-header">
+                        <Typography>{`${week1[0]} | ${convertTime(
+                          docServices.timeFirstSessionOne.start
+                        )} - ${convertTime(
+                          docServices.timeFirstSessionOne.end
+                        )}`}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <div className={styles.scheduleContainer}>
+                          {week1.length > 0 &&
+                            week1.map((day) => (
+                              <div className={styles.schedule} key={day}>
+                                <Typography
+                                  sx={muiStyles.appointmentDays}
+                                  variant="caption">
+                                  {day}
+                                </Typography>
+                                <div className={styles.schedule__timing}>
+                                  <Typography
+                                    sx={muiStyles.opacity}
+                                    variant="body2">
+                                    {(docServices.timeFirstSessionOne.start |
+                                      docServices.timeFirstSessionOne.end) !=
+                                      0 &&
+                                      `${convertTime(
+                                        docServices.timeFirstSessionOne.start
+                                      )} - ${convertTime(
+                                        docServices.timeFirstSessionOne.end
+                                      )}`}
+                                  </Typography>
+                                  <Typography
+                                    sx={muiStyles.opacity}
+                                    variant="body2">
+                                    {(docServices.timeFirstSessionTwo.start |
+                                      docServices.timeFirstSessionTwo.end) !=
+                                      0 &&
+                                      `${convertTime(
+                                        docServices.timeFirstSessionTwo.start
+                                      )} - ${convertTime(
+                                        docServices.timeFirstSessionTwo.end
+                                      )}`}
+                                  </Typography>
+                                </div>
+                              </div>
+                            ))}
+                          {week2.length > 0 &&
+                            week2.map((day) => (
+                              <div className={styles.schedule} key={day}>
+                                <Typography
+                                  sx={muiStyles.appointmentDays}
+                                  variant="caption">
+                                  {day}
+                                </Typography>
+                                <div className={styles.schedule__timing}>
+                                  <Typography
+                                    sx={muiStyles.opacity}
+                                    variant="body2">
+                                    {(docServices.timeSecondSessionOne.start |
+                                      docServices.timeSecondSessionOne.end) !=
+                                      0 &&
+                                      `${convertTime(
+                                        docServices.timeSecondSessionOne.start
+                                      )} - ${convertTime(
+                                        docServices.timeSecondSessionOne.end
+                                      )}`}
+                                  </Typography>
+                                  <Typography
+                                    sx={muiStyles.opacity}
+                                    variant="body2">
+                                    {(docServices.timeSecondSessionTwo.start |
+                                      docServices.timeSecondSessionTwo.end) !=
+                                      0 &&
+                                      `${convertTime(
+                                        docServices.timeSecondSessionTwo.start
+                                      )} - ${convertTime(
+                                        docServices.timeSecondSessionTwo.end
+                                      )}`}
+                                  </Typography>
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </AccordionDetails>
+                    </Accordion>
+                    <ThemeProvider theme={theme}>
+                      <Link
+                        href={`/doctors/${docDetails._id}/bookAppointment`}
+                        passHref>
+                        <Button size="small" variant="contained">
+                          Book Appointment
+                        </Button>
+                      </Link>
+                    </ThemeProvider>
+                  </div>
+                )
+              }
+              {
+                docServices.inClinicFeeAvail && (
+                  <div className={styles.appointment}>
+                    <div>
+                      <Typography sx={muiStyles.coloredText}>
+                        InClinic Appointment
+                      </Typography>
+                      <div>
+                        <Typography sx={muiStyles.opacity} variant="caption">
+                          {docDetails.clinicName}
+                        </Typography>
+                      </div>
+                      <Typography sx={muiStyles.opacity} variant="caption">
+                        {docDetails.clinicAddress}
+                      </Typography>
+                    </div>
+                    <Divider />
+                    <div className={styles.appointment__fee}>
+                      <Typography variant="body2">Fee</Typography>
+                      <Typography variant="body2">
+                        PKR {docServices.inClinicFee}
+                      </Typography>
+                    </div>
+                    <Divider />
+                    <Accordion>
+                      <AccordionSummary
+                        aria-controls="panel1d-content"
+                        id="panel1d-header">
+                        <Typography>{`${week1[0]} | ${convertTime(
+                          docServices.timeFirstSessionOne.start
+                        )} - ${convertTime(
+                          docServices.timeFirstSessionOne.end
+                        )}`}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <div className={styles.scheduleContainer}>
+                          {week1.length > 0 &&
+                            week1.map((day) => (
+                              <div className={styles.schedule} key={day}>
+                                <Typography
+                                  sx={muiStyles.appointmentDays}
+                                  variant="caption">
+                                  {day}
+                                </Typography>
+                                <div className={styles.schedule__timing}>
+                                  <Typography
+                                    sx={muiStyles.opacity}
+                                    variant="body2">
+                                    {(docServices.timeFirstSessionOne.start |
+                                      docServices.timeFirstSessionOne.end) !=
+                                      0 &&
+                                      `${convertTime(
+                                        docServices.timeFirstSessionOne.start
+                                      )} - ${convertTime(
+                                        docServices.timeFirstSessionOne.end
+                                      )}`}
+                                  </Typography>
+                                  <Typography
+                                    sx={muiStyles.opacity}
+                                    variant="body2">
+                                    {(docServices.timeFirstSessionTwo.start |
+                                      docServices.timeFirstSessionTwo.end) !=
+                                      0 &&
+                                      `${convertTime(
+                                        docServices.timeFirstSessionTwo.start
+                                      )} - ${convertTime(
+                                        docServices.timeFirstSessionTwo.end
+                                      )}`}
+                                  </Typography>
+                                </div>
+                              </div>
+                            ))}
+                          {week2.length > 0 &&
+                            week2.map((day) => (
+                              <div className={styles.schedule} key={day}>
+                                <Typography
+                                  sx={muiStyles.appointmentDays}
+                                  variant="caption">
+                                  {day}
+                                </Typography>
+                                <div className={styles.schedule__timing}>
+                                  <Typography
+                                    sx={muiStyles.opacity}
+                                    variant="body2">
+                                    {(docServices.timeSecondSessionOne.start |
+                                      docServices.timeSecondSessionOne.end) !=
+                                      0 &&
+                                      `${convertTime(
+                                        docServices.timeSecondSessionOne.start
+                                      )} - ${convertTime(
+                                        docServices.timeSecondSessionOne.end
+                                      )}`}
+                                  </Typography>
+                                  <Typography
+                                    sx={muiStyles.opacity}
+                                    variant="body2">
+                                    {(docServices.timeSecondSessionTwo.start |
+                                      docServices.timeSecondSessionTwo.end) !=
+                                      0 &&
+                                      `${convertTime(
+                                        docServices.timeSecondSessionTwo.start
+                                      )} - ${convertTime(
+                                        docServices.timeSecondSessionTwo.end
+                                      )}`}
+                                  </Typography>
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </AccordionDetails>
+                    </Accordion>
+                    <ThemeProvider theme={theme}>
+                      <Link
+                        href={`/doctors/${docDetails._id}/bookAppointment`}
+                        passHref>
+                        <Button size="small" variant="contained">
+                          Book Appointment
+                        </Button>
+                      </Link>
+                    </ThemeProvider>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+        </div>
+        <div className={styles.appointmentContainerForPC}>
+          {
+            docServices.videoFeeAvail && (
               <div className={styles.appointment}>
                 <Typography sx={muiStyles.coloredText}>
                   Online Virtual Appointment
@@ -253,9 +495,7 @@ export default function DocInfo({ docData }) {
                 <Divider />
                 <div className={styles.appointment__fee}>
                   <Typography variant="body2">Fee</Typography>
-                  <Typography variant="body2">
-                    PKR{docServices.videoFee}
-                  </Typography>
+                  <Typography variant="body2">PKR{docServices.videoFee}</Typography>
                 </div>
                 <Divider />
                 <Accordion>
@@ -279,9 +519,7 @@ export default function DocInfo({ docData }) {
                               {day}
                             </Typography>
                             <div className={styles.schedule__timing}>
-                              <Typography
-                                sx={muiStyles.opacity}
-                                variant="body2">
+                              <Typography sx={muiStyles.opacity} variant="body2">
                                 {(docServices.timeFirstSessionOne.start |
                                   docServices.timeFirstSessionOne.end) !=
                                   0 &&
@@ -291,9 +529,7 @@ export default function DocInfo({ docData }) {
                                     docServices.timeFirstSessionOne.end
                                   )}`}
                               </Typography>
-                              <Typography
-                                sx={muiStyles.opacity}
-                                variant="body2">
+                              <Typography sx={muiStyles.opacity} variant="body2">
                                 {(docServices.timeFirstSessionTwo.start |
                                   docServices.timeFirstSessionTwo.end) !=
                                   0 &&
@@ -315,9 +551,7 @@ export default function DocInfo({ docData }) {
                               {day}
                             </Typography>
                             <div className={styles.schedule__timing}>
-                              <Typography
-                                sx={muiStyles.opacity}
-                                variant="body2">
+                              <Typography sx={muiStyles.opacity} variant="body2">
                                 {(docServices.timeSecondSessionOne.start |
                                   docServices.timeSecondSessionOne.end) !=
                                   0 &&
@@ -327,9 +561,7 @@ export default function DocInfo({ docData }) {
                                     docServices.timeSecondSessionOne.end
                                   )}`}
                               </Typography>
-                              <Typography
-                                sx={muiStyles.opacity}
-                                variant="body2">
+                              <Typography sx={muiStyles.opacity} variant="body2">
                                 {(docServices.timeSecondSessionTwo.start |
                                   docServices.timeSecondSessionTwo.end) !=
                                   0 &&
@@ -355,6 +587,10 @@ export default function DocInfo({ docData }) {
                   </Link>
                 </ThemeProvider>
               </div>
+            )
+          }
+          {
+            docServices.inClinicFeeAvail && (
               <div className={styles.appointment}>
                 <div>
                   <Typography sx={muiStyles.coloredText}>
@@ -398,9 +634,7 @@ export default function DocInfo({ docData }) {
                               {day}
                             </Typography>
                             <div className={styles.schedule__timing}>
-                              <Typography
-                                sx={muiStyles.opacity}
-                                variant="body2">
+                              <Typography sx={muiStyles.opacity} variant="body2">
                                 {(docServices.timeFirstSessionOne.start |
                                   docServices.timeFirstSessionOne.end) !=
                                   0 &&
@@ -410,9 +644,7 @@ export default function DocInfo({ docData }) {
                                     docServices.timeFirstSessionOne.end
                                   )}`}
                               </Typography>
-                              <Typography
-                                sx={muiStyles.opacity}
-                                variant="body2">
+                              <Typography sx={muiStyles.opacity} variant="body2">
                                 {(docServices.timeFirstSessionTwo.start |
                                   docServices.timeFirstSessionTwo.end) !=
                                   0 &&
@@ -434,9 +666,7 @@ export default function DocInfo({ docData }) {
                               {day}
                             </Typography>
                             <div className={styles.schedule__timing}>
-                              <Typography
-                                sx={muiStyles.opacity}
-                                variant="body2">
+                              <Typography sx={muiStyles.opacity} variant="body2">
                                 {(docServices.timeSecondSessionOne.start |
                                   docServices.timeSecondSessionOne.end) !=
                                   0 &&
@@ -446,9 +676,7 @@ export default function DocInfo({ docData }) {
                                     docServices.timeSecondSessionOne.end
                                   )}`}
                               </Typography>
-                              <Typography
-                                sx={muiStyles.opacity}
-                                variant="body2">
+                              <Typography sx={muiStyles.opacity} variant="body2">
                                 {(docServices.timeSecondSessionTwo.start |
                                   docServices.timeSecondSessionTwo.end) !=
                                   0 &&
@@ -474,220 +702,8 @@ export default function DocInfo({ docData }) {
                   </Link>
                 </ThemeProvider>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.appointmentContainerForPC}>
-          <div className={styles.appointment}>
-            <Typography sx={muiStyles.coloredText}>
-              Online Virtual Appointment
-            </Typography>
-            <Divider />
-            <div className={styles.appointment__fee}>
-              <Typography variant="body2">Fee</Typography>
-              <Typography variant="body2">PKR{docServices.videoFee}</Typography>
-            </div>
-            <Divider />
-            <Accordion>
-              <AccordionSummary
-                aria-controls="panel1d-content"
-                id="panel1d-header">
-                <Typography>{`${week1[0]} | ${convertTime(
-                  docServices.timeFirstSessionOne.start
-                )} - ${convertTime(
-                  docServices.timeFirstSessionOne.end
-                )}`}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className={styles.scheduleContainer}>
-                  {week1.length > 0 &&
-                    week1.map((day) => (
-                      <div className={styles.schedule} key={day}>
-                        <Typography
-                          sx={muiStyles.appointmentDays}
-                          variant="caption">
-                          {day}
-                        </Typography>
-                        <div className={styles.schedule__timing}>
-                          <Typography sx={muiStyles.opacity} variant="body2">
-                            {(docServices.timeFirstSessionOne.start |
-                              docServices.timeFirstSessionOne.end) !=
-                              0 &&
-                              `${convertTime(
-                                docServices.timeFirstSessionOne.start
-                              )} - ${convertTime(
-                                docServices.timeFirstSessionOne.end
-                              )}`}
-                          </Typography>
-                          <Typography sx={muiStyles.opacity} variant="body2">
-                            {(docServices.timeFirstSessionTwo.start |
-                              docServices.timeFirstSessionTwo.end) !=
-                              0 &&
-                              `${convertTime(
-                                docServices.timeFirstSessionTwo.start
-                              )} - ${convertTime(
-                                docServices.timeFirstSessionTwo.end
-                              )}`}
-                          </Typography>
-                        </div>
-                      </div>
-                    ))}
-                  {week2.length > 0 &&
-                    week2.map((day) => (
-                      <div className={styles.schedule} key={day}>
-                        <Typography
-                          sx={muiStyles.appointmentDays}
-                          variant="caption">
-                          {day}
-                        </Typography>
-                        <div className={styles.schedule__timing}>
-                          <Typography sx={muiStyles.opacity} variant="body2">
-                            {(docServices.timeSecondSessionOne.start |
-                              docServices.timeSecondSessionOne.end) !=
-                              0 &&
-                              `${convertTime(
-                                docServices.timeSecondSessionOne.start
-                              )} - ${convertTime(
-                                docServices.timeSecondSessionOne.end
-                              )}`}
-                          </Typography>
-                          <Typography sx={muiStyles.opacity} variant="body2">
-                            {(docServices.timeSecondSessionTwo.start |
-                              docServices.timeSecondSessionTwo.end) !=
-                              0 &&
-                              `${convertTime(
-                                docServices.timeSecondSessionTwo.start
-                              )} - ${convertTime(
-                                docServices.timeSecondSessionTwo.end
-                              )}`}
-                          </Typography>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </AccordionDetails>
-            </Accordion>
-            <ThemeProvider theme={theme}>
-              <Link
-                href={`/doctors/${docDetails._id}/bookAppointment`}
-                passHref>
-                <Button size="small" variant="contained">
-                  Book Appointment
-                </Button>
-              </Link>
-            </ThemeProvider>
-          </div>
-          <div className={styles.appointment}>
-            <div>
-              <Typography sx={muiStyles.coloredText}>
-                InClinic Appointment
-              </Typography>
-              <div>
-                <Typography sx={muiStyles.opacity} variant="caption">
-                  {docDetails.clinicName}
-                </Typography>
-              </div>
-              <Typography sx={muiStyles.opacity} variant="caption">
-                {docDetails.clinicAddress}
-              </Typography>
-            </div>
-            <Divider />
-            <div className={styles.appointment__fee}>
-              <Typography variant="body2">Fee</Typography>
-              <Typography variant="body2">
-                PKR {docServices.inClinicFee}
-              </Typography>
-            </div>
-            <Divider />
-            <Accordion>
-              <AccordionSummary
-                aria-controls="panel1d-content"
-                id="panel1d-header">
-                <Typography>{`${week1[0]} | ${convertTime(
-                  docServices.timeFirstSessionOne.start
-                )} - ${convertTime(
-                  docServices.timeFirstSessionOne.end
-                )}`}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className={styles.scheduleContainer}>
-                  {week1.length > 0 &&
-                    week1.map((day) => (
-                      <div className={styles.schedule} key={day}>
-                        <Typography
-                          sx={muiStyles.appointmentDays}
-                          variant="caption">
-                          {day}
-                        </Typography>
-                        <div className={styles.schedule__timing}>
-                          <Typography sx={muiStyles.opacity} variant="body2">
-                            {(docServices.timeFirstSessionOne.start |
-                              docServices.timeFirstSessionOne.end) !=
-                              0 &&
-                              `${convertTime(
-                                docServices.timeFirstSessionOne.start
-                              )} - ${convertTime(
-                                docServices.timeFirstSessionOne.end
-                              )}`}
-                          </Typography>
-                          <Typography sx={muiStyles.opacity} variant="body2">
-                            {(docServices.timeFirstSessionTwo.start |
-                              docServices.timeFirstSessionTwo.end) !=
-                              0 &&
-                              `${convertTime(
-                                docServices.timeFirstSessionTwo.start
-                              )} - ${convertTime(
-                                docServices.timeFirstSessionTwo.end
-                              )}`}
-                          </Typography>
-                        </div>
-                      </div>
-                    ))}
-                  {week2.length > 0 &&
-                    week2.map((day) => (
-                      <div className={styles.schedule} key={day}>
-                        <Typography
-                          sx={muiStyles.appointmentDays}
-                          variant="caption">
-                          {day}
-                        </Typography>
-                        <div className={styles.schedule__timing}>
-                          <Typography sx={muiStyles.opacity} variant="body2">
-                            {(docServices.timeSecondSessionOne.start |
-                              docServices.timeSecondSessionOne.end) !=
-                              0 &&
-                              `${convertTime(
-                                docServices.timeSecondSessionOne.start
-                              )} - ${convertTime(
-                                docServices.timeSecondSessionOne.end
-                              )}`}
-                          </Typography>
-                          <Typography sx={muiStyles.opacity} variant="body2">
-                            {(docServices.timeSecondSessionTwo.start |
-                              docServices.timeSecondSessionTwo.end) !=
-                              0 &&
-                              `${convertTime(
-                                docServices.timeSecondSessionTwo.start
-                              )} - ${convertTime(
-                                docServices.timeSecondSessionTwo.end
-                              )}`}
-                          </Typography>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </AccordionDetails>
-            </Accordion>
-            <ThemeProvider theme={theme}>
-              <Link
-                href={`/doctors/${docDetails._id}/bookAppointment`}
-                passHref>
-                <Button size="small" variant="contained">
-                  Book Appointment
-                </Button>
-              </Link>
-            </ThemeProvider>
-          </div>
+            )
+          }
         </div>
       </div>
     </Layout>

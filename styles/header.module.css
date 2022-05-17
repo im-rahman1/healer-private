@@ -7,14 +7,61 @@
   flex-direction: column;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  height: 52px;
+  padding: 0 0.6rem;
 }
 
 @media screen and (max-width: 786px) {
-.header {
-  height: 52px;
+  .header {
+    height: 52px;
+  }
+
+  .loginBtn {
+    display: none;
+  }
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logoLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 786px) {
+  .logoLinks {
+    display: none;
+  }
+
+  .logInBtn {
+    display: none;
+  }
+
+  .dvdr {
+    display: none;
+  }
+}
+
+.simpleLink {
+  color: #5f5f5f;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.highlightedLink {
+  color: #01a22e;
+  background-color: #01a22f34;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .headerTop {
@@ -22,7 +69,11 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  padding: 3px 10px 0 5px;
+  /* padding: 3px 10px 0 5px; */
+}
+
+.logo {
+  /* padding-left: 0.7rem; */
 }
 
 .navLinks {
@@ -31,6 +82,7 @@
   align-items: center;
   gap: 5px;
 }
+
 
 .headerBottom {
   /* background: #dfdfdf44; */
