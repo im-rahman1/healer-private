@@ -57,7 +57,7 @@ const breadcrumbs = [
     <Typography sx={muiStyles.link}>Home</Typography>
   </Link>,
   <Typography href="/" key="3" color="text.primary">
-    Physicians
+    Doctors
   </Typography>,
 ];
 
