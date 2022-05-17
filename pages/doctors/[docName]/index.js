@@ -61,16 +61,16 @@ export default function DocInfo({ docData }) {
 
   const breadcrumbs = [
     <Link href="/" key="1" color="inherit" passHref>
-      <Typography variant="caption" sx={muiStyles.link}>
+      <Typography variant="body2" sx={muiStyles.link}>
         Home
       </Typography>
     </Link>,
     <Link href="/doctors" key="1" color="inherit" passHref>
-      <Typography variant="caption" sx={muiStyles.link}>
+      <Typography variant="body2" sx={muiStyles.link}>
         Doctors
       </Typography>
     </Link>,
-    <Typography variant="caption" key="3" color="text.primary">
+    <Typography variant="body2" key="3" color="text.primary">
       {`${docDetails.title} ${docDetails.fullName}`}
     </Typography>,
   ];

@@ -52,7 +52,12 @@
   padding: 0.2rem 0.6rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.simpleLink:hover {
+  color: #01a22e;
 }
 
 .highlightedLink {

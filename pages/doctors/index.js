@@ -54,9 +54,9 @@ const muiStyles = {
 
 const breadcrumbs = [
   <Link href="/" key="1" color="inherit" passHref>
-    <Typography sx={muiStyles.link}>Home</Typography>
+    <Typography variant="body2" sx={muiStyles.link}>Home</Typography>
   </Link>,
-  <Typography href="/" key="3" color="text.primary">
+  <Typography variant="body2" href="/" key="3" color="text.primary">
     Doctors
   </Typography>,
 ];

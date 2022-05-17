@@ -61,7 +61,7 @@ export default function Header({ onMenuClick }) {
                   <Typography>Home</Typography>
               </Link>
             </div>
-            <div  className={router.pathname == '/doctors' ? styles.highlightedLink : styles.simpleLink}>
+            <div  className={router.pathname.includes("doctors") ? styles.highlightedLink : styles.simpleLink}>
               <Link href="/doctors" passHref>
                 <Typography>Doctors</Typography>
               </Link>
