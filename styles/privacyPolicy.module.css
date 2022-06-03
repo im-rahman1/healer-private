@@ -1,7 +1,14 @@
 .privactPolicyPage {
-  margin: 30px 20px;
+  margin: 2rem;
+}
+
+@media screen and (min-width: 786px) {
+  .privactPolicyPage {
+    margin-top: 1rem;
+  }
 }
 
 .heading {
-  margin: 30px 0 5px 0;
+  /* margin: 30px 0 5px 0; */
 }
+

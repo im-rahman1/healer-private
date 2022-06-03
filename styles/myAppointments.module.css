@@ -1,0 +1,63 @@
+/* toggles */
+.togglersContainer {
+  display: flex;
+  width: fit-content;
+  margin: 1rem;
+}
+
+.toggler1 {
+  padding: 0.2rem 0.5rem;
+  width: 5.5rem;
+  display: flex;
+  justify-content: center;
+  border-top: 1.5px solid lightgray;
+  border-bottom: 1.5px solid lightgray;
+  border-left: 1.5px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-radius: 5px 0 0 5px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.toggler2 {
+  padding: 0.2rem 0.5rem;
+  width: 5.5rem;
+  display: flex;
+  justify-content: center;
+  border-top: 1.5px solid lightgray;
+  border-bottom: 1.5px solid lightgray;
+  border-right: 1.5px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-radius: 0 5px 5px 0;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.toggler1:hover, .toggler2:hover {
+  background-color: #04ba3819;
+}
+
+.toggler1Selected {
+  padding: 0.2rem 0.5rem;
+  width: 5.5rem;
+  display: flex;
+  justify-content: center;
+  border: 1.5px solid #01a22e;
+  background-color: #04ba3819;
+  border-radius: 5px 0 0 5px;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.toggler2Selected {
+  padding: 0.2rem 0.5rem;
+  width: 5.5rem;
+  display: flex;
+  justify-content: center;
+  border: 1.5px solid #01a22e;
+  border-radius: 0 5px 5px 0;
+  background-color: #04ba3819;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+

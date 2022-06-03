@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from 'next/image'
@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import styles from "@/styles/layout.module.css";
 import { useRouter } from "next/router";
 import playStore from "../public/playStore.png";
+import { auth } from "@/config/firebase";
 
 import {
   Drawer,
@@ -32,6 +33,9 @@ import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
 
+import { useUserAuth } from "context/authContext";
+import { onAuthStateChanged } from "firebase/auth";
+
 const drawerWidth = 280;
 
 const muiStyles = {
@@ -55,12 +59,36 @@ export default function Layout({
   window,
 }) {
   const router = useRouter();
+  const { user, logOut, sendUser } = useUserAuth();
+  const [usser, setUsser] = useState(null);
+  const [uName, setUName] = useState("user");
   const [showSideBar, setShowSideBar] = useState(false);
 
   const handleSideBar = () => {
     setShowSideBar(!showSideBar);
-    console.log(showSideBar);
+    // console.log(showSideBar);
   };
+
+  useEffect(() => {
+    if(!usser) {
+      const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+        // console.log(currentuser);
+          setUsser(currentuser);
+      });
+
+      
+      return () => {
+        unsubscribe();
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+  useEffect(() => {
+    setUName(String(localStorage.getItem("proactiveRefresh_n")).split("").reverse().join(""))
+
+  }, [user])
+
 
   const drawer = (
     <div className={styles.drawer}>
@@ -73,9 +101,25 @@ export default function Layout({
             </IconButton>
           </ThemeProvider>
         </div>
-        <div className={styles.info}>
-          <Avatar sx={muiStyles.avatar} />
-          <Typography sx={{color: '#fff'}}>Mani ch</Typography>
+        <div>
+          {
+            usser ? (
+              <div className={styles.info}>
+                <Avatar sx={muiStyles.avatar} src={usser.photoURL || ""} />
+                <Typography sx={{color: '#fff'}}>{uName}</Typography>
+                <Typography sx={{color: '#fff'}} variant="caption">{usser.phoneNumber || " "}</Typography>
+              </div>
+            ) : (
+              <div>
+                <Link href="/logIn" passHref>
+                  <div className={styles.info}>
+                    <Avatar sx={muiStyles.avatar}/>
+                    <Typography sx={{color: '#fff', cursor: 'pointer'}}>LogIn</Typography>
+                  </div>
+                </Link>
+              </div>
+            )
+          }
         </div>
           <List sx={{ padding: 0 }}>
             <Link href="/" passHref>
@@ -131,9 +175,13 @@ export default function Layout({
           </List>
       </div>
       <div>
-        <div className={styles.logoutBtn}>
-          <Button size="small">Log Out</Button>
-        </div>
+        {
+          usser && (
+            <div className={styles.logoutBtn}>
+              <Button size="small" onClick={() => logOut()}>Log Out</Button>
+            </div>
+          )
+        }
         <div className={styles.downloadNowContainer}>
             <Typography variant="caption">Download Healer App</Typography>
             <div className={styles.playstoreBtn}>
@@ -189,6 +237,8 @@ export default function Layout({
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              background: "rgba(255, 255, 255, 0.8)",
+              backdropFilter: "blur(5px)",
             },
           }}>
           {drawer}
@@ -197,6 +247,7 @@ export default function Layout({
       <Box component="main" className={styles.container}>
         <div>{children}</div>
       </Box>
+      {/* <Button onClick={() => sendUser()}>send User</Button> */}
       <Footer />
     </div>
   );

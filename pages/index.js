@@ -13,6 +13,8 @@ import { API_URL } from "./../config/config";
 import { Box } from "@mui/system";
 import TagManager from "react-gtm-module";
 
+import { useUserAuth } from "context/authContext";
+
 function addProductJsonLd() {
   return {
     __html: `{
@@ -34,13 +36,11 @@ function addProductJsonLd() {
 }
 
 export default function Home() {
-  // const products = prop.data;
+  const {user} = useUserAuth();
 
-  // console.log(products);
+  const [currentUser, setCurrentUser] = useState(user);
 
-  const [data, setData] = useState([]);
   const [shuffledArray, setShuffledArray] = useState([]);
-  const [skip, setSkip] = useState(0);
   const brands = [
     { img: "/brandsIcons/Lasani.jpeg", name: "Lasani" },
     { img: "/brandsIcons/Ajmal.png", name: "Ajmal" },
@@ -53,8 +53,6 @@ export default function Home() {
     { img: "/brandsIcons/Tayyebi.png", name: "Tayyebi" },
     { img: "/brandsIcons/TT.jpeg", name: "TT" },
   ];
-  const [menProducts, setMenProducts] = useState([]);
-  const [womenProducts, setWomenProducts] = useState([]);
 
   const muiStyles = {
     img: {
@@ -77,67 +75,11 @@ export default function Home() {
     setShuffledArray(array);
   }
 
-  // const onScroll = (e) => {
-  //   let clientW = e.target.clientWidth;
-  //   let scrollL = e.target.scrollLeft;
-  //   let scrollW = e.target.scrollWidth;
-
-  //   let scroll = clientW + scrollL + 0.4;
-
-  //   if (scrollW <= scroll) {
-  //     //   console.log("bottom");
-  //     setSkip(skip + 10);
-  //     getProducts(skip);
-  //   }
-  // };
-
-  //   /EcomMedicine/medicineForHomePage
-  // /EcomMedicine/getMedicines
-  // const getProducts = (s) => {
-  //   axios
-  //     .post(`${API_URL}/EcomMedicine/medicineForHomePage`, {
-  //       skip: s,
-  //     })
-  //     .then((res) => {
-  //       // console.log(res);
-  //       setData(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // const categorizeProducts = () => {
-  //   let menProduct = [];
-  //   let womenProduct = [];
-
-  //   products.map((product) => {
-  //     if (product.tags.includes(`women`)) {
-  //       womenProduct.push(product);
-  //     } else if (product.tags.includes(`men`)) {
-  //       menProduct.push(product);
-  //     }
-  //   });
-
-  //   setMenProducts(menProduct);
-  //   setWomenProducts(womenProduct);
-  // };
-
   // console.log(shuffledArray);
-  // console.log(data);
-  // console.log(skip);
-  // console.log(menProducts);
-  // console.log(womenProducts);
-
-  useEffect(() => {
-    // categorizeProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
 
   useEffect(() => {
     shuffle(brands);
-    // getProducts(skip);
-    // categorizeProducts();
+    console.log(window.uName);
     // TagManager.initialize({ gtmId: TAGM_ID });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -167,51 +109,7 @@ export default function Home() {
           </Typography>
         </div>
       )}
-      {/* {menProducts.length > 0 && (
-        <div>
-          <div className={styles.productCardContainerTxt}>
-            <Typography sx={{ margin: "20px 0 0 10px" }} variant="h6">
-              Men&apos;s Health
-            </Typography>
-            <Typography
-              sx={{ margin: "20px 0 0 10px", color: "#01a22e" }}
-              variant="body2">
-              View All
-            </Typography>
-          </div>
-          <div onScroll={(e) => onScroll(e)} className={styles.scrollable}>
-            {menProducts.map((product) => (
-              <ProductCard key={product._id} name={product._id} />
-            ))}
-          </div>
-        </div>
-      )} */}
-      {/* {womenProducts.length > 0 && (
-        <div>
-          <div className={styles.productCardContainerTxt}>
-            <Typography sx={{ margin: "20px 0 0 10px" }} variant="h6">
-              Women&apos;s Health
-            </Typography>
-            <Typography
-              sx={{ margin: "20px 0 0 10px", color: "#01a22e" }}
-              variant="body2">
-              View All
-            </Typography>
-          </div>
-          <div className={styles.scrollable}>
-            {womenProducts.map((product) => (
-              <Link
-                className={styles.link}
-                href={`/${product.type}/${product.brand}/${encodeURIComponent(
-                  product.productName
-                )}`}
-                key={product._id}>
-                <ProductCard product={product} />
-              </Link>
-            ))}
-          </div>
-        </div>
-      )} */}
+      
       <div className={styles.downloadContainerContainer}>
         <div className={styles.downloadContainer}>
           <div className={styles.downloadImgContainer}>
@@ -264,14 +162,3 @@ export default function Home() {
     </Layout>
   );
 }
-
-// export async function getServerSideProps() {
-//   const res = await axios.post(`${API_URL}/EcomMedicine/medicineForHomePage`, {
-//     skip: 0,
-//   });
-//   const data = res.data;
-
-//   return {
-//     props: { data },
-//   };
-// }

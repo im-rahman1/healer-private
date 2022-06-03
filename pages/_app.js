@@ -1,6 +1,7 @@
 import React from "react";
 import "@/styles/globals.css";
 import TagManager from "react-gtm-module";
+import { UserAuthContextProvider } from "context/authContext";
 
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Component {...pageProps} />
+      <UserAuthContextProvider>
+        <Component {...pageProps} />
+      </UserAuthContextProvider>
     </>
   );
 }

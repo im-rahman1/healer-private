@@ -1,0 +1,20 @@
+.loginPage {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 5rem 0;
+}
+
+@media screen and (max-width: 786px) {
+  .loginPage {
+    margin: 1rem 0 2rem 0;
+  }
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+

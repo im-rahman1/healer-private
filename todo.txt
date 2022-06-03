@@ -1,0 +1,2 @@
+filter the slots
+show the filtered slots

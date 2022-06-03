@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import CircleIcon from "@mui/icons-material/Circle";
+import {setCookie} from "../../hooks/useCookies.";
 
 const muiStyles = {
   link: {
@@ -82,12 +83,18 @@ export default function Physicians() {
       });
   };
 
+  const handleLinkClick = (type) => {
+    setCookie("appointmentType", type);
+    // document.cookie = `AppointmentType = ${type}`;
+  }
+
   useEffect(() => {
     getDoctors();
+
   }, []);
 
   return (
-    <Layout title="Physicians">
+    <Layout title="Doctors">
       <div className={styles.breadcrumbContainer}>
         <Breadcrumbs separator="›" aria-label="breadcrumb">
           {breadcrumbs}
@@ -109,7 +116,7 @@ export default function Physicians() {
                       <DoneIcon sx={{ color: "#01a22e", fontSize: "16px" }} />
                       <div className={styles.badgeText}>
                         <Typography sx={{ fontSize: "12px" }} variant="body2">
-                          NCT verified
+                          NCT verified Unani Physician
                         </Typography>
                       </div>
                     </div>
@@ -121,7 +128,7 @@ export default function Physicians() {
                       <DoneIcon sx={{ color: "#01a22e", fontSize: "16px" }} />
                       <div className={styles.badgeText}>
                         <Typography sx={{ fontSize: "12px" }} variant="body2">
-                          PMC verified
+                          PMC verified Unani Physician
                         </Typography>
                       </div>
                     </div>
@@ -129,7 +136,7 @@ export default function Physicians() {
                 )}
                 <div className={styles.docCard__header}>
                   <div className={styles.docCard__info}>
-                    <Link href={`/doctors/${doctor.doctor._id}`} passHref>
+                    <Link href={`/doctors/${doctor.doctor.docSlug}`} passHref>
                       <Avatar
                         src={doctor.doctor.profileImage}
                         // variant="rounded"
@@ -138,7 +145,7 @@ export default function Physicians() {
                       />
                     </Link>
                     <div>
-                      <Link href={`/doctors/${doctor.doctor._id}`} passHref>
+                      <Link href={`/doctors/${doctor.doctor.docSlug}`} passHref>
                         <Typography
                           sx={
                             muiStyles.boldTxt
@@ -165,46 +172,54 @@ export default function Physicians() {
                 </Typography>
                 <div className={styles.appointments}>
                   {doctor.services.videoFeeAvail && (
-                    <div className={styles.appointment}>
-                      <Typography variant="body2">Online</Typography>
-                      <Typography variant="caption">
-                        Video Consultation
-                      </Typography>
-                      <div className={styles.pricing}>
-                        <div className={styles.availablity}>
-                          <CircleIcon sx={{ fontSize: "12px" }} />
+                    <div onClick={() => handleLinkClick("video")}>
+                      <Link href={`/doctors/${doctor.doctor.docSlug}/appointment`} passHref>
+                        <div className={styles.appointment}>
+                          <Typography variant="body2">Online</Typography>
                           <Typography variant="caption">
-                            Available Today
+                            Video Consultation
                           </Typography>
+                          <div className={styles.pricing}>
+                            <div className={styles.availablity}>
+                              <CircleIcon sx={{ fontSize: "12px" }} />
+                              <Typography variant="caption">
+                                Available Today
+                              </Typography>
+                            </div>
+                            <Typography variant="body2">
+                              {doctor.services.videoFee}
+                            </Typography>
+                          </div>
                         </div>
-                        <Typography variant="body2">
-                          {doctor.services.videoFee}
-                        </Typography>
-                      </div>
+                      </Link>
                     </div>
                   )}
                   {doctor.services.inClinicFeeAvail && (
-                    <div className={styles.appointment}>
-                      <Typography variant="body2">InClinic</Typography>
-                      {doctor.doctor.clinicName && (
-                        <Typography sx={muiStyles.clinicName} variant="caption">
-                          {doctor.doctor.clinicName}
-                        </Typography>
-                      )}
-                      {doctor.doctor.clinicName && (
-                        <Typography  sx={muiStyles.clinicAddress} variant="caption">
-                          {doctor.doctor.clinicAddress}
-                        </Typography>
-                      )}
-                      <div className={styles.pricing}>
-                        <div className={styles.availablity}>
-                          <CircleIcon sx={{ fontSize: "12px" }} />
-                          <Typography variant="caption">
-                            Available Today
-                          </Typography>
+                    <div onClick={() => handleLinkClick("inClinic")}>
+                      <Link href={`/doctors/${doctor.doctor.docSlug}/appointment`} passHref>
+                        <div className={styles.appointment}>
+                          <Typography variant="body2">InClinic</Typography>
+                          {doctor.doctor.clinicName && (
+                            <Typography sx={muiStyles.clinicName} variant="caption">
+                              {doctor.doctor.clinicName}
+                            </Typography>
+                          )}
+                          {doctor.doctor.clinicName && (
+                            <Typography  sx={muiStyles.clinicAddress} variant="caption">
+                              {doctor.doctor.clinicAddress}
+                            </Typography>
+                          )}
+                          <div className={styles.pricing}>
+                            <div className={styles.availablity}>
+                              <CircleIcon sx={{ fontSize: "12px" }} />
+                              <Typography variant="caption">
+                                Available Today
+                              </Typography>
+                            </div>
+                            <Typography variant="body2">Rs 1000</Typography>
+                          </div>
                         </div>
-                        <Typography variant="body2">Rs 1000</Typography>
-                      </div>
+                      </Link>
                     </div>
                   )}
                 </div>
