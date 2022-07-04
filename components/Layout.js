@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
 import Header from "./Header";
 import Footer from "./Footer";
 import styles from "@/styles/layout.module.css";
@@ -26,15 +26,15 @@ import {
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import CloseIcon from "@mui/icons-material/Close";
-import HomeIcon from '@mui/icons-material/Home';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import HomeIcon from "@mui/icons-material/Home";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
 
 import { useUserAuth } from "context/authContext";
-import { onAuthStateChanged } from "firebase/auth";
+import firebase from "firebase/app";
 
 const drawerWidth = 280;
 
@@ -45,8 +45,8 @@ const muiStyles = {
   },
   closeBtn: {
     padding: "5px 0",
-    width: '20px'
-  }
+    width: "20px",
+  },
 };
 
 export default function Layout({
@@ -70,63 +70,67 @@ export default function Layout({
   };
 
   useEffect(() => {
-    if(!usser) {
-      const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+    if (!usser) {
+      const unsubscribe = firebase.auth().onAuthStateChanged((currentuser) => {
         // console.log(currentuser);
-          setUsser(currentuser);
+        setUsser(currentuser);
       });
 
-      
       return () => {
         unsubscribe();
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   useEffect(() => {
-    setUName(String(localStorage.getItem("proactiveRefresh_n")).split("").reverse().join(""))
-
-  }, [user])
-
+    setUName(
+      String(localStorage.getItem("proactiveRefresh_n"))
+        .split("")
+        .reverse()
+        .join("")
+    );
+  }, [user]);
 
   const drawer = (
     <div className={styles.drawer}>
       <ThemeProvider theme={theme}>
-      <div>
-        <div className={styles.sideBarCloseIcon}>
-          <ThemeProvider theme={theme}>
-            <IconButton color="white" onClick={handleSideBar}>
-              <CloseIcon sx={{fontSize: '28px'}} />
-            </IconButton>
-          </ThemeProvider>
-        </div>
         <div>
-          {
-            usser ? (
+          <div className={styles.sideBarCloseIcon}>
+            <ThemeProvider theme={theme}>
+              <IconButton color="white" onClick={handleSideBar}>
+                <CloseIcon sx={{ fontSize: "28px" }} />
+              </IconButton>
+            </ThemeProvider>
+          </div>
+          <div>
+            {usser ? (
               <div className={styles.info}>
                 <Avatar sx={muiStyles.avatar} src={usser.photoURL || ""} />
-                <Typography sx={{color: '#fff'}}>{uName}</Typography>
-                <Typography sx={{color: '#fff'}} variant="caption">{usser.phoneNumber || " "}</Typography>
+                <Typography sx={{ color: "#fff" }}>{uName}</Typography>
+                <Typography sx={{ color: "#fff" }} variant="caption">
+                  {usser.phoneNumber || " "}
+                </Typography>
               </div>
             ) : (
               <div>
                 <Link href="/logIn" passHref>
                   <div className={styles.info}>
-                    <Avatar sx={muiStyles.avatar}/>
-                    <Typography sx={{color: '#fff', cursor: 'pointer'}}>LogIn</Typography>
+                    <Avatar sx={muiStyles.avatar} />
+                    <Typography sx={{ color: "#fff", cursor: "pointer" }}>
+                      LogIn
+                    </Typography>
                   </div>
                 </Link>
               </div>
-            )
-          }
-        </div>
+            )}
+          </div>
           <List sx={{ padding: 0 }}>
             <Link href="/" passHref>
               <ListItem
                 button={router.pathname == "/" ? false : true}
                 sx={
-                  router.pathname == '/'
+                  router.pathname == "/"
                     ? { backgroundColor: "#01a22f23", cursor: "pointer" }
                     : { cursor: "pointer" }
                 }>
@@ -173,24 +177,24 @@ export default function Layout({
               </ListItem>
             </Link>
           </List>
-      </div>
-      <div>
-        {
-          usser && (
+        </div>
+        <div>
+          {usser && (
             <div className={styles.logoutBtn}>
-              <Button size="small" onClick={() => logOut()}>Log Out</Button>
+              <Button size="small" onClick={() => logOut()}>
+                Log Out
+              </Button>
             </div>
-          )
-        }
-        <div className={styles.downloadNowContainer}>
+          )}
+          <div className={styles.downloadNowContainer}>
             <Typography variant="caption">Download Healer App</Typography>
             <div className={styles.playstoreBtn}>
-                <a href="https://play.google.com/store/apps/details?id=com.healer.nature">
-                  <Image src={playStore} alt="get it on playstore" />
-                </a>
-              </div>
+              <a href="https://play.google.com/store/apps/details?id=com.healer.nature">
+                <Image src={playStore} alt="get it on playstore" />
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
       </ThemeProvider>
     </div>
   );

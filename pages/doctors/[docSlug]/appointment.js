@@ -35,6 +35,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { useUserAuth } from "context/authContext";
 import { getCookie } from "hooks/useCookies.";
+import firebase from 'firebase/app';
 
 const muiStyles = {
   link: {
@@ -234,7 +235,7 @@ export default function BookAppointment() {
   const type = 'virtual';
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (_user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((_user) => {
       if (_user) {
         setUseer(_user);
       }

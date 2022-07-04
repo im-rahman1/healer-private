@@ -21,10 +21,11 @@ import { ThemeProvider } from "@mui/material/styles";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MenuIcon from "@mui/icons-material/Menu";
-import Logout from "@mui/icons-material/Logout"
+import Logout from "@mui/icons-material/Logout";
 
-import { onAuthStateChanged } from 'firebase/auth';
-import {auth} from '@/config/firebase'
+// import { onAuthStateChanged } from "firebase/auth";
+// import { auth } from "@/config/firebase";
+import firebase from "firebase/app";
 import { useUserAuth } from "context/authContext";
 
 const muiStyles = {
@@ -65,18 +66,23 @@ export default function Header({ onMenuClick }) {
   };
 
   useEffect(() => {
-    if(!user) {
-      const unsubscribe = onAuthStateChanged(auth, (cuser) => {
+    if (!user) {
+      const unsubscribe = firebase.auth().onAuthStateChanged((cuser) => {
         // console.log(cuser);
-          setCurrentUser(cuser);
-          setUName(String(localStorage.getItem("proactiveRefresh_n")).split("").reverse().join(""));
+        setCurrentUser(cuser);
+        setUName(
+          String(localStorage.getItem("proactiveRefresh_n"))
+            .split("")
+            .reverse()
+            .join("")
+        );
       });
-  
+
       return () => {
         unsubscribe();
       };
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // console.log(currentUser);
@@ -144,22 +150,20 @@ export default function Header({ onMenuClick }) {
                 </IconButton>
               </div>
             </Link> */}
-            <div className="divv" style={{width: "2rem"}}>
-            
-            </div>
+            <div className="divv" style={{ width: "2rem" }}></div>
             {currentUser ? (
               <div className={styles.toolTip}>
-                  <Tooltip title="Account settings">
-                    <IconButton
-                      onClick={handleClick}
-                      size="small"
-                      sx={{ ml: 2 }}
-                      aria-controls={open ? "account-menu" : undefined}
-                      aria-haspopup="true"
-                      aria-expanded={open ? "true" : undefined}>
-                      <Avatar sx={{ width: 32, height: 32 }}></Avatar>
-                    </IconButton>
-                  </Tooltip>
+                <Tooltip title="Account settings">
+                  <IconButton
+                    onClick={handleClick}
+                    size="small"
+                    sx={{ ml: 2 }}
+                    aria-controls={open ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}>
+                    <Avatar sx={{ width: 32, height: 32 }}></Avatar>
+                  </IconButton>
+                </Tooltip>
                 <Menu
                   anchorEl={anchorEl}
                   id="account-menu"
@@ -208,11 +212,13 @@ export default function Header({ onMenuClick }) {
                   </MenuItem>
                 </Menu>
               </div>
-            ): (
+            ) : (
               <div>
                 <Link href="/logIn" passHref>
                   <div>
-                    <Button size='small' variant="outlined">LogIn</Button>
+                    <Button size="small" variant="outlined">
+                      LogIn
+                    </Button>
                   </div>
                 </Link>
               </div>
